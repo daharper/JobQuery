@@ -512,38 +512,42 @@ const
   ERR = '%s does not support requested interface %s';
 var
   lValue: TValue;
-  lEntity: T;
-  lName: string;
   lVariant: Variant;
-  lProperty: TRttiProperty;
-  lNamedProperty: TPair<string, TRttiProperty>;
-begin
-  Result := TList<TService>.Create;
 
-  if aQuery.RecordCount = 0 then exit;
+  scope: TScope;
+begin
+  var entities := TList<TService>.Create;
+
+  if aQuery.RecordCount = 0 then exit(entities);
+
+  scope.Owns(entities);
 
   aQuery.First;
 
   while not aQuery.Eof do
   begin
-    lEntity := T.Create;
+    var entity := T.Create;
 
-    for lNamedProperty in fProperties do
+    for var nameProperty in fProperties do
     begin
-      lName     := lNamedProperty.Key;
-      lProperty := lNamedProperty.Value;
-      lVariant  := aQuery[lName];
+      var name := nameProperty.Key;
+      var prop := nameProperty.Value;
+      var col  := fPropToColMap[name];
 
-      if not TReflection.TryVariantToTValue(lVariant, lProperty.PropertyType.Handle, lValue) then
+      lVariant := aQuery[col];
+
+      if not TReflection.TryVariantToTValue(lVariant, prop.PropertyType.Handle, lValue) then
         lValue := TValue.FromVariant(lVariant);
 
-      lProperty.SetValue(TObject(lEntity), lValue);
+      prop.SetValue(TObject(entity), lValue);
     end;
 
-    Result.Add(TReflection.As<TService>(lEntity));
+    entities.Add(TReflection.As<TService>(entity));
 
     aQuery.Next;
   end;
+
+  Result := scope.Release(entities);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
