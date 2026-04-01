@@ -841,7 +841,7 @@ end;
 {----------------------------------------------------------------------------------------------------------------------}
 function TBvAttribute.AsDateTime: TDateTime;
 begin
-  Result := TConvert.ToDateTimeISO8601(fValue);
+  Result := TConvert.ToDateTimeISO8601Utc(fValue);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -923,7 +923,7 @@ end;
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TBvAttribute.Assign(const aValue: TDateTime);
 begin
-  fValue := TConvert.DateTimeToStringISO8601(aValue);
+  fValue := TConvert.DateTimeToStringISO8601Utc(aValue);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -1046,7 +1046,7 @@ end;
 {----------------------------------------------------------------------------------------------------------------------}
 function TBvElement.AsDateTime: TDateTime;
 begin
-  Result := TConvert.ToDateTimeISO8601(fValue);
+  Result := TConvert.ToDateTimeISO8601Utc(fValue);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -1222,7 +1222,7 @@ end;
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TBvElement.Assign(const aValue: TDateTime);
 begin
-  fValue := TConvert.DateTimeToStringISO8601(aValue);
+  fValue := TConvert.DateTimeToStringISO8601Utc(aValue);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

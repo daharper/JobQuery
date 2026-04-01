@@ -159,6 +159,24 @@
             <Form>MainForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Base\Base.Application.pas"/>
+        <DCCReference Include="Base\Base.Collect.pas"/>
+        <DCCReference Include="Base\Base.Collections.pas"/>
+        <DCCReference Include="Base\Base.Container.pas"/>
+        <DCCReference Include="Base\Base.Conversions.pas"/>
+        <DCCReference Include="Base\Base.Core.pas"/>
+        <DCCReference Include="Base\Base.Data.pas"/>
+        <DCCReference Include="Base\Base.Dynamic.pas"/>
+        <DCCReference Include="Base\Base.Files.pas"/>
+        <DCCReference Include="Base\Base.Formatting.pas"/>
+        <DCCReference Include="Base\Base.Integrity.pas"/>
+        <DCCReference Include="Base\Base.Json.pas"/>
+        <DCCReference Include="Base\Base.Messaging.pas"/>
+        <DCCReference Include="Base\Base.Reflection.pas"/>
+        <DCCReference Include="Base\Base.Settings.pas"/>
+        <DCCReference Include="Base\Base.Sqlite.pas"/>
+        <DCCReference Include="Base\Base.Xml.pas"/>
+        <DCCReference Include="Domain\Domain.Jobs\Domain.Jobs.Job.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
