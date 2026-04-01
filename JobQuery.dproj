@@ -176,6 +176,7 @@
         <DCCReference Include="Base\Base.Settings.pas"/>
         <DCCReference Include="Base\Base.Sqlite.pas"/>
         <DCCReference Include="Base\Base.Xml.pas"/>
+        <DCCReference Include="Infrastructure\Data\Infrastructure.Data.Repositories.pas"/>
         <DCCReference Include="Domain\Domain.Jobs\Domain.Jobs.Job.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

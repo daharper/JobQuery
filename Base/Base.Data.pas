@@ -311,14 +311,14 @@ type
   private
     fDb: IDbSessionManager;
 
-    function GetQueryResults(const aQuery: TFDQuery):TList<TService>;
+    function GetQueryResults(const aQuery: TFDQuery):TArray<TService>;
   protected
     function Database: IDbSessionManager;
     function Connection: TFDConnection;
     function NewQuery: TFDQuery;
 
-    function ExecQuery(const aSql: string):TList<TService>; overload;
-    function ExecQuery(const aQuery: TFDQuery):TList<TService>; overload;
+    function ExecQuery(const aSql: string):TArray<TService>; overload;
+    function ExecQuery(const aQuery: TFDQuery):TArray<TService>; overload;
 
     class var fName: string;
     class var fPropertyOrder: TList<string>;
@@ -450,30 +450,23 @@ end;
 function TDbSet<TService, T>.GetAll: TArray<TService>;
 const
   SQL = 'select * from %s';
-var
-  scope: TScope;
 begin
   var qry := SQL.Format(SQL, [TableName]);
-  var list := scope.Owns(ExecQuery(qry));
 
-  Result := list.ToArray;
+  Result := ExecQuery(qry);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
 function TDbSet<TService, T>.GetBy(const aId: integer): TOption<TService>;
 const
   SQL = 'select * from %s where id = %d';
-var
-  scope: TScope;
 begin
   var qry := SQL.Format(SQL, [TableName, aId]);
 
-  var list := scope.Owns(ExecQuery(qry));
+  var entities := ExecQuery(qry);
 
-  if list.IsEmpty then
-    Result.SetNone
-  else
-    Result.SetSome(list[0]);
+  if Assigned(entities) then
+    Result.SetSome(entities[0]);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -483,7 +476,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TDbSet<TService, T>.ExecQuery(const aSql: string):TList<TService>;
+function TDbSet<TService, T>.ExecQuery(const aSql: string): TArray<TService>;
 begin
   var query := NewQuery;
 
@@ -496,7 +489,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TDbSet<TService, T>.ExecQuery(const aQuery: TFDQuery): TList<TService>;
+function TDbSet<TService, T>.ExecQuery(const aQuery: TFDQuery): TArray<TService>;
 begin
   aQuery.Open;
   try
@@ -507,7 +500,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TDbSet<TService, T>.GetQueryResults(const aQuery: TFDQuery): TList<TService>;
+function TDbSet<TService, T>.GetQueryResults(const aQuery: TFDQuery): TArray<TService>;
 const
   ERR = '%s does not support requested interface %s';
 var
@@ -516,11 +509,9 @@ var
 
   scope: TScope;
 begin
-  var entities := TList<TService>.Create;
+  if aQuery.RecordCount = 0 then exit(nil);
 
-  if aQuery.RecordCount = 0 then exit(entities);
-
-  scope.Owns(entities);
+  var entities := scope.Owns(TList<TService>.Create);
 
   aQuery.First;
 
@@ -547,7 +538,7 @@ begin
     aQuery.Next;
   end;
 
-  Result := scope.Release(entities);
+  Result := entities.ToArray;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

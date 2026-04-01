@@ -20,6 +20,7 @@ uses
   Base.Settings in 'Base\Base.Settings.pas',
   Base.Sqlite in 'Base\Base.Sqlite.pas',
   Base.Xml in 'Base\Base.Xml.pas',
+  Infrastructure.Data.Repositories in 'Infrastructure\Data\Infrastructure.Data.Repositories.pas',
   Domain.Jobs.Job in 'Domain\Domain.Jobs\Domain.Jobs.Job.pas';
 
 {$R *.res}
