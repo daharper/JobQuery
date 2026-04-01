@@ -567,14 +567,13 @@ end;
 {----------------------------------------------------------------------------------------------------------------------}
 class constructor TDbSet<TService, T>.Create;
 const
-  NAME_ERR = 'Entities should follow the T[Table] naming convention: %s';
-  TYPE_ERR = '%s does not implement %s';
+  TYPE_ERR   = '%s does not implement %s';
+  IFCE_COUNT = 'RefCount';
 var
   lCtx: TRttiContext;
 begin
 {$IFDEF DEBUG}
-  // Delphi can't constrain Class + Interface on T, so we fail fast here.
-  // T must implement TService.
+  // Delphi can't constrain Class + Interface on T, so we fail fast here: T must implement TService.
   Assert(TReflection.Is<T, TService>, Format(TYPE_ERR, [T.ClassName, TReflection.TypeNameOf<TService>]));
 {$ENDIF}
 
@@ -602,7 +601,7 @@ begin
 
   for var lProperty in lType.GetProperties do
   begin
-    if SameText(lProperty.Name, 'RefCount') then Continue;
+    if SameText(lProperty.Name, IFCE_COUNT) then Continue;
 
     if Assigned(lProperty.GetAttribute<TransientAttribute>()) then continue;
 
@@ -636,14 +635,19 @@ end;
 
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TMigration.Execute(const aDb: IDbSessionManager);
+const
+  MSG = 'Applying migration (%d.%d): %s';
 begin
-  Writeln(Format('Applying migration (%d.%d): %s', [fVersion, fSequence, fDescription]));
+  Writeln(Format(MSG, [fVersion, fSequence, fDescription]));
 end;
 
 { TMigrationManager }
 
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TMigrationManager.Execute;
+const
+  ERR_DETAIL  = 'Migration Error (%d.%d - %s): %s';
+  ERR_SUMMARY = 'Migration Error (%d): %s';
 var
   scope: TScope;
 begin
@@ -656,19 +660,23 @@ begin
 
   if max = version then exit;
 
-  var migrations := Stream.From<TMigration>(fMigrations.ToArray)
-    .Filter(function(const m: TMigration): Boolean
+  var migrations := Stream
+    .From<TMigration>(fMigrations.ToArray)
+    .Filter(
+        function(const m: TMigration): Boolean
         begin
           Result := m.Version > version;
         end)
-    .Sort(TComparer<TMigration>.Construct(function(const l, r: TMigration): integer
+    .Sort(TComparer<TMigration>.Construct(
+        function(const l, r: TMigration): integer
         begin
           if l.Version <> r.Version then
             Result := Ord(CompareValue(l.Version, r.Version))
           else
             Result := Ord(CompareValue(l.Sequence, r.Sequence));
         end))
-    .GroupBy<integer>(function(const m: TMigration): integer
+    .GroupBy<integer>(
+        function(const m: TMigration): integer
         begin
           Result := m.Version;
         end);
@@ -696,9 +704,9 @@ begin
         fDb.CurrentSession.Rollback;
 
         var msg := if Assigned(m) then
-                     Format('Migration Error (%d.%d - %s): %s', [v, m.Sequence, m.Description, E.Message])
+                     Format(ERR_DETAIL, [v, m.Sequence, m.Description, E.Message])
                    else
-                     Format('Migration Error (%d): %s', [v, E.Message]);
+                     Format(ERR_SUMMARY, [v, E.Message]);
 
         raise Exception.Create(msg);
       end;
