@@ -294,7 +294,7 @@ type
     property Id: integer read GetId write SetId;
   end;
 
-  IRepository<TService: IEntity; T: TEntity, constructor> = interface
+  IDbSet<TService: IEntity; T: TEntity, constructor> = interface
     ['{2B0A8B8E-2A59-43E7-8B3F-0A6B8A2A4A3C}']
 
     function TableName: string;
@@ -304,9 +304,9 @@ type
   end;
 
 {$IFDEF MSWINDOWS}
-  TRepository<TService: IEntity; T: TEntity, constructor> = class(TDynamicObject, IRepository<TService, T>)
+  TDbSet<TService: IEntity; T: TEntity, constructor> = class(TDynamicObject, IDbSet<TService, T>)
 {$ELSE}
-  TRepository<TService: IEntity; T: TEntity, constructor> = class(TTransient, IRepository<TService, T>)
+  TDbSet<TService: IEntity; T: TEntity, constructor> = class(TTransient, IDbSet<TService, T>)
 {$ENDIF}
   private
     fDb: IDbSessionManager;
@@ -426,28 +426,28 @@ begin
   Result := fId < 1;
 end;
 
-{ TRepository<TService, T> }
+{ TDbSet<TService, T> }
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.Database: IDbSessionManager;
+function TDbSet<TService, T>.Database: IDbSessionManager;
 begin
   Result := fDb;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.Connection: TFDConnection;
+function TDbSet<TService, T>.Connection: TFDConnection;
 begin
   Result := fDb.CurrentSession.Connection;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.NewQuery: TFDQuery;
+function TDbSet<TService, T>.NewQuery: TFDQuery;
 begin
   Result := fDb.CurrentSession.NewQuery;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.GetAll: TArray<TService>;
+function TDbSet<TService, T>.GetAll: TArray<TService>;
 const
   SQL = 'select * from %s';
 var
@@ -460,7 +460,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.GetBy(const aId: integer): TOption<TService>;
+function TDbSet<TService, T>.GetBy(const aId: integer): TOption<TService>;
 const
   SQL = 'select * from %s where id = %d';
 var
@@ -477,13 +477,13 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.TableName: string;
+function TDbSet<TService, T>.TableName: string;
 begin
   Result := fName;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.ExecQuery(const aSql: string):TList<TService>;
+function TDbSet<TService, T>.ExecQuery(const aSql: string):TList<TService>;
 begin
   var query := NewQuery;
 
@@ -496,7 +496,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.ExecQuery(const aQuery: TFDQuery): TList<TService>;
+function TDbSet<TService, T>.ExecQuery(const aQuery: TFDQuery): TList<TService>;
 begin
   aQuery.Open;
   try
@@ -507,7 +507,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TRepository<TService, T>.GetQueryResults(const aQuery: TFDQuery): TList<TService>;
+function TDbSet<TService, T>.GetQueryResults(const aQuery: TFDQuery): TList<TService>;
 const
   ERR = '%s does not support requested interface %s';
 var
@@ -547,7 +547,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TRepository<TService, T>.Create(const aDb: IDbSessionManager);
+constructor TDbSet<TService, T>.Create(const aDb: IDbSessionManager);
 begin
   inherited Create;
 
@@ -555,13 +555,13 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-destructor TRepository<TService, T>.Destroy;
+destructor TDbSet<TService, T>.Destroy;
 begin
   inherited;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-class constructor TRepository<TService, T>.Create;
+class constructor TDbSet<TService, T>.Create;
 const
   NAME_ERR = 'Entities should follow the T[Table] naming convention: %s';
   TYPE_ERR = '%s does not implement %s';
@@ -621,7 +621,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-class destructor TRepository<TService, T>.Destroy;
+class destructor TDbSet<TService, T>.Destroy;
 begin
   FreeAndNil(fProperties);
   FreeAndNil(fColToPropMap);
