@@ -294,9 +294,6 @@ type
     property Id: integer read GetId write SetId;
   end;
 
-  /// <summary>
-  ///  Base interface for the repositories.
-  /// </summary>
   IRepository<TService: IEntity; T: TEntity, constructor> = interface
     ['{2B0A8B8E-2A59-43E7-8B3F-0A6B8A2A4A3C}']
 
@@ -306,11 +303,6 @@ type
     function GetBy(const aId: integer): TOption<TService>;
   end;
 
-
-  /// <summary>
-  ///  Base type for all repositories. Requires entities to follow the T[Table] naming convention,
-  ///  for example, TCustomer for a table named Customer.
-  /// </summary>
 {$IFDEF MSWINDOWS}
   TRepository<TService: IEntity; T: TEntity, constructor> = class(TDynamicObject, IRepository<TService, T>)
 {$ELSE}
@@ -396,6 +388,14 @@ uses
 
 {----------------------------------------------------------------------------------------------------------------------}
 constructor TTableAttribute.Create(const aName: string);
+begin
+  fName := aName;
+end;
+
+{ TColumnAttribute }
+
+{----------------------------------------------------------------------------------------------------------------------}
+constructor TColumnAttribute.Create(const aName: string);
 begin
   fName := aName;
 end;
