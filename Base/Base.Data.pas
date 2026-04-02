@@ -619,6 +619,7 @@ class destructor TDbSet<TService, T>.Destroy;
 begin
   FreeAndNil(fProperties);
   FreeAndNil(fColToPropMap);
+  FreeAndNil(fPropToColMap);
   FreeAndNil(fPropertyOrder);
 end;
 
@@ -891,9 +892,11 @@ begin
 
   var database   := Settings.Database;
   var providerId := database.Attr('provider', 'sqlite').AsString;
-  var provider   := Container.Resolve<IDbContextProvider>(providerId);
+  var name       := database.Attr('name', 'default').AsString;
+  var provider   := Container.Resolve<IDbContextProvider>(providerId); // name
 
-  Ensure.IsTrue(Assigned(provider), 'Database provider not registerd: ' + providerId);
+  Ensure.IsTrue(Assigned(provider), 'Database provider not registered: ' + providerId);
+  Ensure.AreSameText(providerId, provider.ProviderId, 'Provider mismatch for name: ' + name);
 
   Result := Provider.BuildContext(fFileService, Settings);
 end;

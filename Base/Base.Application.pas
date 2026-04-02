@@ -61,7 +61,8 @@ type
 implementation
 
 uses
-  Base.Xml;
+  Base.Xml,
+  Base.Sqlite;
 
 { Functions }
 
@@ -121,9 +122,15 @@ procedure TApplicationBuilder.RegisterDatabaseTypes;
 begin
   if fDatabaseRegistered then exit;
 
+  // database core
   Services.Add<IDbContextFactory, TDbContextFactory>;
   Services.Add<IDbSessionManager, TDbSessionManager>;
+  Services.Add<IDbSessionFactory, TSqliteSessionFactory>;
   Services.Add<IMigrationManager, TMigrationManager>;
+
+  // database providers
+  Services.Add<IDbContextProvider, TSqliteContextProvider>('sqlite');
+  Services.Add<IDbStartupHook, TSqliteStartup>('sqlite');
 
   fDatabaseRegistered := true;
 end;

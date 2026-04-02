@@ -1,6 +1,14 @@
 ﻿<Settings>
   <Database provider="sqlite" name="default">
-    <Sqlite fileName="jobs.db"
+    <Sqlite name = "default"
+            fileName="jobs.db"
+            busyTimeoutMs="5000"
+            foreignKeys="on"
+            journalMode="wal"
+            synchronous="normal" />
+
+    <Sqlite name = "test"
+            fileName="test.db"
             busyTimeoutMs="5000"
             foreignKeys="on"
             journalMode="wal"

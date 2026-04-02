@@ -25,17 +25,9 @@ type
   end;
 
   /// <summary>
-  ///  Registers core data services with the application builder.
-  /// </summary>
-  TCoreDataServicesModule = class(TInterfacedObject, IContainerModule)
-  public
-    procedure RegisterServices(const c: TContainer);
-  end;
-
-  /// <summary>
   ///  Registers data services with the application builder.
   /// </summary>
-  TDataServicesModule = class(TInterfacedObject, IContainerModule)
+  TDataServiceModule = class(TInterfacedObject, IContainerModule)
   public
     procedure RegisterServices(const c: TContainer);
   end;
@@ -58,7 +50,7 @@ uses
 procedure TApplicationModule.RegisterServices(const c: TContainer);
 begin
   c.AddModule<TServiceModule>;
-  c.AddModule<TCoreDataServicesModule>;
+  c.AddModule<TDataServiceModule>;
 end;
 
 { TServiceModule }
@@ -73,20 +65,11 @@ end;
 { TDataServicesModule }
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TCoreDataServicesModule.RegisterServices(const c: TContainer);
-begin
-  c.Add<IDbContextProvider, TSqliteContextProvider>('sqlite');
-  c.Add<IDbSessionFactory, TSqliteSessionFactory>;
-  c.Add<IDbStartupHook, TSqliteStartup>('sqlite');
-  c.Add<IMigrationRegistrar, TMigrationRegistrar>;
-end;
-
-{ TDataServicesModule }
-
-{----------------------------------------------------------------------------------------------------------------------}
-procedure TDataServicesModule.RegisterServices(const c: TContainer);
+procedure TDataServiceModule.RegisterServices(const c: TContainer);
 begin
   c.Add<IJobRepository, TJobRepository>;
+
+  c.Add<IMigrationRegistrar, TMigrationRegistrar>;
 end;
 
 end.

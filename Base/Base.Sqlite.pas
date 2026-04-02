@@ -196,7 +196,8 @@ uses
   System.StrUtils,
   System.IOUtils,
   System.Variants,
-  Base.Integrity;
+  Base.Integrity,
+  Base.Collections;
 
   {----------------------------------------------------------------------------------------------------------------------}
 function SqliteJournalModeToPragma(const aMode: TSqliteJournalMode): string;
@@ -525,33 +526,44 @@ end;
 
 {----------------------------------------------------------------------------------------------------------------------}
 function TSqliteContextProvider.BuildContext(const aFileService: IFileService; const Settings: ISettings): IDbContext;
+const
+  NO_PROVIDER = 'Unable to find a suitable database provider for %s (%s)';
+  INVALID_PROVIDER = 'Provider mismatch - expected: %s, actual: %s';
 var
   opt: TSqliteOptions;
 begin
   opt := Default(TSqliteOptions);
 
-  var database := Settings.Database; // this should be where provider = sqlite and name = 'x', we need name here....
-  var sqlite   := database.Elem('Sqlite');
+  var database := Settings.Database;
+  var provider := Settings.Database.Attr('provider').Value;
+  var name     := Settings.Database.Attr('name').Value;
+  var config   := Settings.DatabaseConfiguration(provider, name);
 
-  var fileName := sqlite.Attr('fileName').AsString;
+  // make sure we have a provider
+  Ensure.IsTrue(Assigned(config), Format(NO_PROVIDER, [name, provider]));
+
+  // make sure it is the correct provider
+  Ensure.AreSameText(config.Name, 'Sqlite', Format(INVALID_PROVIDER, [provider, config.Name]));
+
+  var fileName := config.Attr('fileName').AsString;
 
   Ensure.IsNotBlank(fileName, 'missing Sqlite filename');
 
   opt.DatabasePath := aFileService.GetDatabasePath(fileName);
 
-  var timeout := sqlite.Attr('busyTimeoutMs', '-1').AsInteger;
+  var timeout := config.Attr('busyTimeoutMs', '-1').AsInteger;
 
   if timeout <> -1 then
     opt.BusyTimeoutMs := timeout;
 
-  var foreignKeys := sqlite.Attr('foreignKeys', '').AsString;
+  var foreignKeys := config.Attr('foreignKeys', '').AsString;
 
   case IndexText(foreignKeys, ['', 'OFF', 'ON']) of
     1: opt.ForeignKeys := fkOff;
     2: opt.ForeignKeys := fkOn;
   end;
 
-  var journalMode := sqlite.Attr('journalMode', '').AsString;
+  var journalMode := config.Attr('journalMode', '').AsString;
 
   case IndexText(journalMode, ['', 'WAL', 'DELETE', 'TRUNCATE', 'PERSIST', 'MEMORY', 'OFF']) of
     1: opt.JournalMode := jmWAL;
@@ -561,7 +573,7 @@ begin
     5: opt.JournalMode := jmOff;
   end;
 
-  var synchronous := sqlite.Attr('synchronous', '').AsString;
+  var synchronous := config.Attr('synchronous', '').AsString;
 
    case IndexText(synchronous, [ '', 'OFF', 'NORMAL', 'FULL', 'EXTRA']) of
     1: opt.Synchronous := syOff;
