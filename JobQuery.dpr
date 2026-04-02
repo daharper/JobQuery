@@ -23,28 +23,20 @@ uses
   Infrastructure.Data.Repositories in 'Infrastructure\Data\Infrastructure.Data.Repositories.pas',
   Domain.Jobs.Job in 'Domain\Domain.Jobs\Domain.Jobs.Job.pas',
   Infrastructure.Data.Migrations in 'Infrastructure\Data\Infrastructure.Data.Migrations.pas',
-  Presentation.Core.Application in 'Presentation\Core\Presentation.Core.Application.pas';
+  Presentation.Core.Application in 'Presentation\Core\Presentation.Core.Application.pas',
+  Presentation.Core.Configuration in 'Presentation\Core\Presentation.Core.Configuration.pas';
 
 {$R *.res}
 
 begin
-  Application.Initialize;
-  Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TMainForm, MainForm);
-  Application.Run;
-
-{
   ReportMemoryLeaksOnShutdown := true;
 
-  ApplicationBuilder.Services.AddModule<TConsoleModule>;
+  ApplicationBuilder.Services.AddModule<TApplicationModule>;
   ApplicationBuilder.LoadSettings;
 
   ApplicationBuilder.ConfigureDatabase;
   ApplicationBuilder.PerformMigrations;
 
   var app := ApplicationBuilder.Build;
-
   app.Execute;
-}
-
 end.

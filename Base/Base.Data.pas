@@ -629,7 +629,9 @@ procedure TMigration.Execute(const aDb: IDbSessionManager);
 const
   MSG = 'Applying migration (%d.%d): %s';
 begin
-  Writeln(Format(MSG, [fVersion, fSequence, fDescription]));
+  { TODO -oDavid -cBase : Add Logging Multicast }
+
+//  Writeln(Format(MSG, [fVersion, fSequence, fDescription]));
 end;
 
 { TMigrationManager }

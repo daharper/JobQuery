@@ -37,6 +37,9 @@ type
   TApplicationBuilder = class
   private
     fDatabaseConfigured: boolean;
+    fDatabaseRegistered: boolean;
+
+    procedure RegisterDatabaseTypes;
 
     class var fInstance: TApplicationBuilder;
   public
@@ -84,6 +87,8 @@ const
 var
   hook: IDbStartupHook;
 begin
+  RegisterDatabaseTypes;
+
   Ensure.IsFalse(fDatabaseConfigured, CONFIG_ERR).IsTrue(Assigned(aCtx), CONTEXT_ERR);
 
   Services.AddSingleton<IDbContext>(aCtx);
@@ -103,10 +108,24 @@ end;
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TApplicationBuilder.ConfigureDatabase;
 begin
+  RegisterDatabaseTypes;
+
   var settings := Services.Resolve<ISettings>;
   var ctx := Services.Resolve<IDbContextFactory>.BuildFromSettings(settings);
 
   ConfigureDatabase(ctx);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TApplicationBuilder.RegisterDatabaseTypes;
+begin
+  if fDatabaseRegistered then exit;
+
+  Services.Add<IDbContextFactory, TDbContextFactory>;
+  Services.Add<IDbSessionManager, TDbSessionManager>;
+  Services.Add<IMigrationManager, TMigrationManager>;
+
+  fDatabaseRegistered := true;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

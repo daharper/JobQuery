@@ -76,14 +76,9 @@ end;
 procedure TCoreDataServicesModule.RegisterServices(const c: TContainer);
 begin
   c.Add<IDbContextProvider, TSqliteContextProvider>('sqlite');
-  c.Add<IDbStartupHook, TSqliteStartup>('sqlite');
-  c.Add<IDbContextProvider, TSqliteContextProvider>('sqlite');
-  c.Add<IDbStartupHook, TSqliteStartup>('sqlite');
-  c.Add<IDbContextFactory, TDbContextFactory>;
   c.Add<IDbSessionFactory, TSqliteSessionFactory>;
-  c.Add<IDbSessionManager, TDbSessionManager>;
+  c.Add<IDbStartupHook, TSqliteStartup>('sqlite');
   c.Add<IMigrationRegistrar, TMigrationRegistrar>;
-  c.Add<IMigrationManager, TMigrationManager>;
 end;
 
 { TDataServicesModule }

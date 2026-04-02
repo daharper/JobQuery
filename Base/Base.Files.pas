@@ -115,7 +115,7 @@ begin
     TDirectory.CreateDirectory(fDocumentsPath);
 
   if not TDirectory.Exists(fDataPath) then
-    TDirectory.CreateDirectory(fDocumentsPath);
+    TDirectory.CreateDirectory(fDataPath);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

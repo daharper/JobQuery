@@ -530,7 +530,7 @@ var
 begin
   opt := Default(TSqliteOptions);
 
-  var database := Settings.Database;
+  var database := Settings.Database; // this should be where provider = sqlite and name = 'x', we need name here....
   var sqlite   := database.Elem('Sqlite');
 
   var fileName := sqlite.Attr('fileName').AsString;
