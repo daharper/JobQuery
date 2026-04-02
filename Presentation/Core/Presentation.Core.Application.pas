@@ -5,6 +5,8 @@ interface
 uses
   System.SysUtils,
   Vcl.Forms,
+  Vcl.Themes,
+  Vcl.Styles,
   Base.Application,
   Presentation.Forms.Main;
 
@@ -26,6 +28,10 @@ begin
 
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'Job Query';
+
+  TStyleManager.TrySetStyle('Windows Modern Blue');
+
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end;

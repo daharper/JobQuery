@@ -24,11 +24,23 @@ uses
   Domain.Jobs.Job in 'Domain\Domain.Jobs\Domain.Jobs.Job.pas',
   Infrastructure.Data.Migrations in 'Infrastructure\Data\Infrastructure.Data.Migrations.pas',
   Presentation.Core.Application in 'Presentation\Core\Presentation.Core.Application.pas',
-  Presentation.Core.Configuration in 'Presentation\Core\Presentation.Core.Configuration.pas';
+  Presentation.Core.Configuration in 'Presentation\Core\Presentation.Core.Configuration.pas',
+  Vcl.Themes,
+  Vcl.Styles;
 
 {$R *.res}
 
 begin
+// Delphi looks for this code to enable the "Appearance Setting" in Options.
+// Uncomment when changing appearance, remove when appearance is finalized.
+
+//  Application.Initialize;
+//  Application.MainFormOnTaskbar := True;
+//  Application.Title := 'Job Query';
+//  TStyleManager.TrySetStyle('Windows Modern Blue');
+//  Application.CreateForm(TMainForm, MainForm);
+//  Application.Run;
+
   ReportMemoryLeaksOnShutdown := true;
 
   ApplicationBuilder.Services.AddModule<TApplicationModule>;
