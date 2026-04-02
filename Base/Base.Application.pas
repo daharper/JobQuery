@@ -29,7 +29,7 @@ type
   TApplicationBase = class(TTransient, IApplication)
   protected
     procedure Run; virtual; abstract;
-    procedure HandleException(const E: Exception); virtual;
+    procedure HandleException(const E: Exception); virtual; abstract;
   public
     procedure Execute;
   end;
@@ -167,12 +167,6 @@ begin
       ExitCode := 1;
     end;
   end;
-end;
-
-{----------------------------------------------------------------------------------------------------------------------}
-procedure TApplicationBase.HandleException(const E: Exception);
-begin
-  Writeln(E.ClassName, ': ', E.Message);
 end;
 
 end.

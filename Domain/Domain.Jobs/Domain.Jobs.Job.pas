@@ -22,7 +22,7 @@ type
     function GetLongitude: string;
     function GetMaxSalary: integer;
     function GetMinSalary: integer;
-    function GetRef: string;
+    function GetSourceRef: string;
     function GetSalaryPredicted: boolean;
     function GetSource: string;
     function GetTitle: string;
@@ -40,7 +40,7 @@ type
     procedure SetLongitude(const aValue: string);
     procedure SetMaxSalary(const aValue: integer);
     procedure SetMinSalary(const aValue: integer);
-    procedure SetRef(const aValue: string);
+    procedure SetSourceRef(const aValue: string);
     procedure SetSalaryPredicted(const aValue: boolean);
     procedure SetSource(const aValue: string);
     procedure SetTitle(const aValue: string);
@@ -48,7 +48,7 @@ type
     procedure SetDescription(const aValue: string);
 
     property Source:string read GetSource write SetSource;
-    property Ref:string read GetRef write SetRef;
+    property SourceRef:string read GetSourceRef write SetSourceRef;
     property CreatedAt: TDateTime read GetCreatedAt write SetCreatedAt;
     property Category:string read GetCategory write SetCategory;
     property MinSalary:integer read GetMinSalary write SetMinSalary;
@@ -70,7 +70,7 @@ type
   private
     fSource:          string;    // Adzuna
     fCreatedAt:       TDateTime; // created
-    fRef:             string;    // id (5673228454)
+    fSourceRef:       string;    // id (5673228454)
     fCategory:        string;    // category -> label (IT Jobs)
     fMinSalary:       integer;   // salary_min
     fMaxSalary:       integer;   // salary_max
@@ -97,7 +97,7 @@ type
     function GetLongitude: string;
     function GetMaxSalary: integer;
     function GetMinSalary: integer;
-    function GetRef: string;
+    function GetSourceRef: string;
     function GetSalaryPredicted: boolean;
     function GetSource: string;
     function GetTitle: string;
@@ -115,7 +115,7 @@ type
     procedure SetLongitude(const aValue: string);
     procedure SetMaxSalary(const aValue: integer);
     procedure SetMinSalary(const aValue: integer);
-    procedure SetRef(const aValue: string);
+    procedure SetSourceRef(const aValue: string);
     procedure SetSalaryPredicted(const aValue: boolean);
     procedure SetSource(const aValue: string);
     procedure SetTitle(const aValue: string);
@@ -123,7 +123,7 @@ type
     procedure SetDescription(const aValue: string);
 
     property Source:string read GetSource write SetSource;
-    property Ref:string read GetRef write SetRef;
+    property SourceRef:string read GetSourceRef write SetSourceRef;
     property CreatedAt: TDateTime read GetCreatedAt write SetCreatedAt;
     property Category:string read GetCategory write SetCategory;
     property MinSalary:integer read GetMinSalary write SetMinSalary;
@@ -223,9 +223,9 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TJob.GetRef: string;
+function TJob.GetSourceRef: string;
 begin
-  Result := fRef;
+  Result := fSourceRef;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -325,9 +325,9 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TJob.SetRef(const aValue: string);
+procedure TJob.SetSourceRef(const aValue: string);
 begin
-  fRef := aValue;
+  fSourceRef := aValue;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

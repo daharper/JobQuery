@@ -21,21 +21,32 @@ type
     function StartupPath: string;
     function DocumentsPath: string;
     function SettingsPath: string;
+    function DataPath: string;
 
     function GetDatabasePath(const aName: string): string;
     function GetDocumentPath(const aName: string): string;
   end;
 
-  TFileService = class(TSingleton, IFileService)
+  /// <summary>
+  ///  Suitable for self-contained applications that access folders and files
+  ///  within their startup folder:
+  ///
+  ///  - Settings.xml
+  ///  - docs/
+  ///  - data/
+  ///
+  /// </summary>
+  TApplicationFileService = class(TSingleton, IFileService)
   private
-    fStartupPath: string;
-    fDatabasePath: string;
+    fStartupPath:   string;
+    fDataPath:      string;
     fDocumentsPath: string;
-    fSettingsPath: string;
+    fSettingsPath:  string;
   public
     function StartupPath: string;
     function DocumentsPath: string;
     function SettingsPath: string;
+    function DataPath: string;
 
     function GetDatabasePath(const aName: string): string;
     function GetDocumentPath(const aName: string): string;
@@ -53,53 +64,62 @@ uses
 { TFileService }
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TFileService.GetDatabasePath(const aName: string): string;
+function TApplicationFileService.GetDatabasePath(const aName: string): string;
 begin
-  Result := TPath.Combine(fDatabasePath, aName);
+  Result := TPath.Combine(fDataPath, aName);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TFileService.GetDocumentPath(const aName: string): string;
+function TApplicationFileService.GetDocumentPath(const aName: string): string;
 begin
   Result := TPath.Combine(fDocumentsPath, aName);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TFileService.DocumentsPath: string;
+function TApplicationFileService.DocumentsPath: string;
 begin
   Result := fDocumentsPath;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TFileService.SettingsPath: string;
+function TApplicationFileService.SettingsPath: string;
 begin
   Result := fSettingsPath;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TFileService.StartupPath: string;
+function TApplicationFileService.StartupPath: string;
 begin
   Result := fStartupPath;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TFileService.Create;
+function TApplicationFileService.DataPath: string;
+begin
+  Result := fDataPath;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+constructor TApplicationFileService.Create;
 begin
   inherited Create;
 
   { simple for v0.1 }
 
   fStartupPath   := ExtractFileDir(ParamStr(0));
-  fDatabasePath  := fStartupPath;
+  fDataPath      := TPath.Combine(fStartupPath, 'data');
   fDocumentsPath := TPath.Combine(fStartupPath, 'docs');
   fSettingsPath  := TPath.Combine(fStartupPath, 'Settings.xml');
 
   if not TDirectory.Exists(fDocumentsPath) then
     TDirectory.CreateDirectory(fDocumentsPath);
+
+  if not TDirectory.Exists(fDataPath) then
+    TDirectory.CreateDirectory(fDocumentsPath);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-destructor TFileService.Destroy;
+destructor TApplicationFileService.Destroy;
 begin
 
   inherited;

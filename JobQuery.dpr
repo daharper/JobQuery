@@ -2,7 +2,7 @@ program JobQuery;
 
 uses
   Vcl.Forms,
-  Forms.Main in 'Forms\Forms.Main.pas' {MainForm},
+  Presentation.Forms.Main in 'Presentation\Forms\Presentation.Forms.Main.pas' {MainForm},
   Base.Application in 'Base\Base.Application.pas',
   Base.Collect in 'Base\Base.Collect.pas',
   Base.Collections in 'Base\Base.Collections.pas',
@@ -21,7 +21,9 @@ uses
   Base.Sqlite in 'Base\Base.Sqlite.pas',
   Base.Xml in 'Base\Base.Xml.pas',
   Infrastructure.Data.Repositories in 'Infrastructure\Data\Infrastructure.Data.Repositories.pas',
-  Domain.Jobs.Job in 'Domain\Domain.Jobs\Domain.Jobs.Job.pas';
+  Domain.Jobs.Job in 'Domain\Domain.Jobs\Domain.Jobs.Job.pas',
+  Infrastructure.Data.Migrations in 'Infrastructure\Data\Infrastructure.Data.Migrations.pas',
+  Presentation.Core.Application in 'Presentation\Core\Presentation.Core.Application.pas';
 
 {$R *.res}
 
@@ -30,4 +32,19 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
+
+{
+  ReportMemoryLeaksOnShutdown := true;
+
+  ApplicationBuilder.Services.AddModule<TConsoleModule>;
+  ApplicationBuilder.LoadSettings;
+
+  ApplicationBuilder.ConfigureDatabase;
+  ApplicationBuilder.PerformMigrations;
+
+  var app := ApplicationBuilder.Build;
+
+  app.Execute;
+}
+
 end.

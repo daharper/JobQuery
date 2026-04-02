@@ -155,7 +155,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Forms\Forms.Main.pas">
+        <DCCReference Include="Presentation\Forms\Presentation.Forms.Main.pas">
             <Form>MainForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
@@ -178,6 +178,8 @@
         <DCCReference Include="Base\Base.Xml.pas"/>
         <DCCReference Include="Infrastructure\Data\Infrastructure.Data.Repositories.pas"/>
         <DCCReference Include="Domain\Domain.Jobs\Domain.Jobs.Job.pas"/>
+        <DCCReference Include="Infrastructure\Data\Infrastructure.Data.Migrations.pas"/>
+        <DCCReference Include="Presentation\Core\Presentation.Core.Application.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
