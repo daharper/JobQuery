@@ -1,11 +1,18 @@
 ﻿<Settings>
+  <!-- version 0.1 automatic database configuration is limited to one database -->
+
   <Database provider="sqlite" name="default">
+
+    <!-- version 0.1 focuses on Sqlite -->
+
     <Sqlite name = "default"
             fileName="jobs.db"
             busyTimeoutMs="5000"
             foreignKeys="on"
             journalMode="wal"
             synchronous="normal" />
+
+    <!-- second database to validate database selection per provider and name -->
 
     <Sqlite name = "test"
             fileName="test.db"
@@ -14,4 +21,5 @@
             journalMode="wal"
             synchronous="normal" />
   </Database>
+
 </Settings>

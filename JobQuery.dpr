@@ -31,8 +31,8 @@ uses
 {$R *.res}
 
 begin
-// Delphi looks for this code to enable the "Appearance Setting" in Options.
-// Uncomment when changing appearance, remove when appearance is finalized.
+{ Delphi looks for the following code to enable the "Appearance Setting" in Options.
+  Uncomment when changing appearance, remove when appearance is finalized.}
 
 //  Application.Initialize;
 //  Application.MainFormOnTaskbar := True;
