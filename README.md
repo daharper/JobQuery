@@ -2,6 +2,6 @@
 
 A simple job search application.
 
-This tools is being created primarily to drive the development of infastructure and data types in **Project Galahad**.
+This tool's purpose is primarily to drive the development and refinement of types in **Project Galahad**.
 
-It is a useful use case.
+It's currently in development.
