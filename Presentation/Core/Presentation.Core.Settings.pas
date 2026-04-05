@@ -3,7 +3,6 @@ unit Presentation.Core.Settings;
 interface
 
 uses
-  Base.Files,
   Base.Settings,
   App.Core.Settings;
 
@@ -14,14 +13,6 @@ type
 
   TApplicationSettings = class(TAppSettings, IApplicationSettings)
   public
-    //
-  end;
-
-  IApplicationFileService = interface(IFileService)
-    ['{6400F264-3C53-4D2B-BC1A-89058E645070}']
-  end;
-
-  TApplicationFileService = class(TStandardFileService, IApplicationFileService)
     //
   end;
 

@@ -192,6 +192,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </DCCReference>
         <DCCReference Include="Presentation\Core\Presentation.Core.Settings.pas"/>
         <DCCReference Include="App\Core\App.Core.Settings.pas"/>
+        <DCCReference Include="Presentation\Core\Presentation.Core.Files.pas"/>
         <None Include="Resources\Settings.xml"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

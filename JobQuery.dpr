@@ -30,7 +30,8 @@ uses
   Presentation.Core.Composition in 'Presentation\Core\Presentation.Core.Composition.pas',
   Presentation.Modules.Main in 'Presentation\Modules\Presentation.Modules.Main.pas' {MainDataModule: TDataModule},
   Presentation.Core.Settings in 'Presentation\Core\Presentation.Core.Settings.pas',
-  App.Core.Settings in 'App\Core\App.Core.Settings.pas';
+  App.Core.Settings in 'App\Core\App.Core.Settings.pas',
+  Presentation.Core.Files in 'Presentation\Core\Presentation.Core.Files.pas';
 
 {$R *.res}
 

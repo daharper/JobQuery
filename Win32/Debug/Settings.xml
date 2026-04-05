@@ -23,7 +23,7 @@
   </Database>
 
   <Adzuna>
-    <App id="a65aee41" key="fb254509e73fd0eddb617e68f9fea88a" />
+    <App id="a65aee41" key="" />
     <Url>https://api.adzuna.com/v1/api/jobs/gb/search/1</Url>
   </Adzuna>
 

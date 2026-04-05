@@ -54,7 +54,8 @@ uses
   Infrastructure.Data.Repositories,
   Infrastructure.Data.Migrations,
   Presentation.Core.Application,
-  Presentation.Core.Settings;
+  Presentation.Core.Settings,
+  Presentation.Core.Files;
 
 { TApplicationModule }
 
