@@ -68,6 +68,8 @@ type
     procedure Commit;
     procedure Rollback;
 
+    procedure Init(const aCtx: IDbContext; const aConnection: TFDConnection);
+
     // Transitional: schema/user version for migrations
     function GetSchemaVersion: Integer;
     procedure SetSchemaVersion(const Value: Integer);
@@ -359,7 +361,7 @@ type
     procedure Execute;
   end;
 
-  IMigrationRegistrar = interface
+  IMigrationRegistry = interface
     ['{C64AD729-DDB8-4AF0-9D23-92BE9E830E14}']
     procedure Configure(const m: IMigrationManager);
   end;
@@ -372,7 +374,7 @@ type
     procedure Add(const aVersion: integer; const aSequence: integer; const aMigration:TMigrationClass; const aDescription: string);
     procedure Execute;
 
-    constructor Create(const aDb: IDbSessionManager; const aRegistrar: IMigrationRegistrar);
+    constructor Create(const aDb: IDbSessionManager; const aRegistry: IMigrationRegistry);
     destructor Destroy; override;
   end;
 
@@ -721,12 +723,12 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TMigrationManager.Create(const aDb: IDbSessionManager; const aRegistrar: IMigrationRegistrar);
+constructor TMigrationManager.Create(const aDb: IDbSessionManager; const aRegistry: IMigrationRegistry);
 begin
   fDb := aDb;
   fMigrations := TObjectList<TMigration>.Create(true);
 
-  aRegistrar.Configure(Self);
+  aRegistry.Configure(Self);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

@@ -163,7 +163,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </DelphiCompile>
         <DCCReference Include="Presentation\Forms\Presentation.Forms.Main.pas">
             <Form>MainForm</Form>
-            <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Base\Base.Application.pas"/>
         <DCCReference Include="Base\Base.Collect.pas"/>
@@ -186,7 +185,13 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="Domain\Domain.Jobs\Domain.Jobs.Job.pas"/>
         <DCCReference Include="Infrastructure\Data\Infrastructure.Data.Migrations.pas"/>
         <DCCReference Include="Presentation\Core\Presentation.Core.Application.pas"/>
-        <DCCReference Include="Presentation\Core\Presentation.Core.Configuration.pas"/>
+        <DCCReference Include="Presentation\Core\Presentation.Core.Composition.pas"/>
+        <DCCReference Include="Presentation\Modules\Presentation.Modules.Main.pas">
+            <Form>MainDataModule</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Presentation\Core\Presentation.Core.Settings.pas"/>
+        <DCCReference Include="App\Core\App.Core.Settings.pas"/>
         <None Include="Resources\Settings.xml"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

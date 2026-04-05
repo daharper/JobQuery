@@ -203,6 +203,7 @@ type
     procedure Assign(const aValue: Int64); overload;
     procedure Assign(const aValue: TGuid); overload;
     procedure Assign(const aValue: Currency); overload;
+    procedure Assign(const aOther: IBvElement); overload;
 
 {$IFDEF MSWINDOWS}
     procedure Add(aElement: OleVariant);
@@ -365,6 +366,7 @@ type
     procedure Assign(const aValue: Int64); overload;
     procedure Assign(const aValue: TGuid); overload;
     procedure Assign(const aValue: Currency); overload;
+    procedure Assign(const aOther: IBvElement); overload;
 
 {$IFDEF MSWINDOWS}
     procedure Add(aElement: OleVariant);
@@ -1251,10 +1253,29 @@ procedure TBvElement.Assign(const aValue: TGuid);
 begin
   fValue := GUIDToString(aValue);
 end;
+
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TBvElement.Assign(const aValue: Currency);
 begin
   fValue := TConvert.CurrencyToStringInv(aValue);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TBvElement.Assign(const aOther: IBvElement);
+begin
+  Ensure.IsTrue(fElems.IsEmpty and fAttrs.IsEmpty, 'Element is already initialized.');
+
+  fName := aOther.Name;
+  fValue := aOther.Value;
+
+  for var e in aOther.Elems do
+    Push(e);
+
+  for var a in aOther.Attrs do
+    fAttrs.AddRange(aOther.Attrs);
+
+  aOther.ClearElems;
+  aOther.ClearAttrs;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

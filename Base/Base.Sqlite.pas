@@ -125,6 +125,8 @@ type
     procedure Commit;
     procedure Rollback;
 
+    procedure Init(const aCtx: IDbContext; const aConnection: TFDConnection);
+
     function GetSchemaVersion: Integer;
     procedure SetSchemaVersion(const Value: Integer);
   end;
@@ -396,6 +398,29 @@ end;
 procedure TSqliteSession.SetSchemaVersion(const Value: Integer);
 begin
   fConnection.ExecSQL('PRAGMA user_version = ' + IntToStr(Value) + ';');
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TSqliteSession.Init(const aCtx: IDbContext; const aConnection: TFDConnection);
+var
+  payload: ISqliteContextPayload;
+begin
+  if not Supports(aCtx.Payload, ISqliteContextPayload, payload) then
+    raise Exception.Create('SQLite context payload missing or wrong type.');
+
+  var driverId := aConnection.Params.DriverID;
+
+  aConnection.LoginPrompt := False;
+
+  aConnection.Params.Clear;
+  aConnection.Params.Assign(fConnection.Params);
+
+  if not string.IsNullOrWhiteSpace(driverId) then
+    aConnection.Params.DriverID := driverId;
+
+  aConnection.Connected := True;
+
+  ApplySqlitePolicy(payload.Options);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

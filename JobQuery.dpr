@@ -2,6 +2,9 @@ program JobQuery;
 
 uses
   Vcl.Forms,
+  Vcl.Themes,
+  Vcl.Styles,
+  Vcl.Dialogs,
   Presentation.Forms.Main in 'Presentation\Forms\Presentation.Forms.Main.pas' {MainForm},
   Base.Application in 'Base\Base.Application.pas',
   Base.Collect in 'Base\Base.Collect.pas',
@@ -24,31 +27,36 @@ uses
   Domain.Jobs.Job in 'Domain\Domain.Jobs\Domain.Jobs.Job.pas',
   Infrastructure.Data.Migrations in 'Infrastructure\Data\Infrastructure.Data.Migrations.pas',
   Presentation.Core.Application in 'Presentation\Core\Presentation.Core.Application.pas',
-  Presentation.Core.Configuration in 'Presentation\Core\Presentation.Core.Configuration.pas',
-  Vcl.Themes,
-  Vcl.Styles;
+  Presentation.Core.Composition in 'Presentation\Core\Presentation.Core.Composition.pas',
+  Presentation.Modules.Main in 'Presentation\Modules\Presentation.Modules.Main.pas' {MainDataModule: TDataModule},
+  Presentation.Core.Settings in 'Presentation\Core\Presentation.Core.Settings.pas',
+  App.Core.Settings in 'App\Core\App.Core.Settings.pas';
 
 {$R *.res}
 
 begin
-{ Delphi looks for the following code to enable the "Appearance Setting" in Options.
+{ Delphi looks for the following code to enable the "Appearance" and "Forms" project settings in Options.
   Uncomment when changing appearance, remove when appearance is finalized.}
 
 //  Application.Initialize;
 //  Application.MainFormOnTaskbar := True;
 //  Application.Title := 'Job Query';
 //  TStyleManager.TrySetStyle('Windows Modern Blue');
+//  Application.CreateForm(TMainDataModule, MainDataModule);
 //  Application.CreateForm(TMainForm, MainForm);
 //  Application.Run;
 
+
   ReportMemoryLeaksOnShutdown := true;
 
-  ApplicationBuilder.Services.AddModule<TApplicationModule>;
-  ApplicationBuilder.LoadSettings;
+  var app := ApplicationBuilder
+                  .AddModule<TApplicationModule>
+                  .LoadSettings<IApplicationSettings>
+                  .ConfigureDatabase
+                  .PerformMigrations
+                  .AddAliases<TAliasModule>
+                  .Build;
 
-  ApplicationBuilder.ConfigureDatabase;
-  ApplicationBuilder.PerformMigrations;
-
-  var app := ApplicationBuilder.Build;
   app.Execute;
+
 end.

@@ -12,7 +12,7 @@
             journalMode="wal"
             synchronous="normal" />
 
-    <!-- second database to test database selection per provider and name -->
+    <!-- a second database to validate database selection per provider and name -->
 
     <Sqlite name = "test"
             fileName="test.db"
@@ -21,5 +21,10 @@
             journalMode="wal"
             synchronous="normal" />
   </Database>
+
+  <Adzuna>
+    <App id="a65aee41" key="fb254509e73fd0eddb617e68f9fea88a" />
+    <Url>https://api.adzuna.com/v1/api/jobs/gb/search/1</Url>
+  </Adzuna>
 
 </Settings>

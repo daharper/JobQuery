@@ -184,6 +184,11 @@ type
     class function &As<T>(const aSource: IInterface): T; overload; static; inline;
 
     /// <summary>
+    /// Casts an interface reference to interface T, returns nil if not supported.
+    /// </summary>
+    class function CastInterface<T: IInterface>(const Source: IInterface): T; static;
+
+    /// <summary>
     ///  Returns true if T implements TService interface.
     /// </summary>
     class function &Is<T:class, constructor; TService>: boolean; static;
@@ -452,6 +457,17 @@ begin
     aGuid := AnEmptyGuid;
     Result := False;
   end;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+class function TReflection.CastInterface<T>(const Source: IInterface): T;
+var
+  lGuid: TGUID;
+begin
+  lGuid := GetTypeData(TypeInfo(T))^.Guid;
+
+  if not Supports(Source, lGuid, Result) then
+    Result := Default(T); // Or raise an exception
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

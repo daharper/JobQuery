@@ -17,7 +17,6 @@ uses
 type
   IFileService = interface
     ['{22A50D33-BEFA-4D3C-A384-99F7D8A90992}']
-
     function StartupPath: string;
     function DocumentsPath: string;
     function SettingsPath: string;
@@ -36,8 +35,9 @@ type
   ///  - data/
   ///
   /// </summary>
-  TApplicationFileService = class(TSingleton, IFileService)
+  TStandardFileService = class(TSingleton, IFileService)
   private
+    fText: string;
     fStartupPath:   string;
     fDataPath:      string;
     fDocumentsPath: string;
@@ -64,43 +64,43 @@ uses
 { TFileService }
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TApplicationFileService.GetDatabasePath(const aName: string): string;
+function TStandardFileService.GetDatabasePath(const aName: string): string;
 begin
-  Result := TPath.Combine(fDataPath, aName);
+  Result := if TPath.IsPathRooted(aName) then aName else TPath.Combine(fDataPath, aName);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TApplicationFileService.GetDocumentPath(const aName: string): string;
+function TStandardFileService.GetDocumentPath(const aName: string): string;
 begin
   Result := TPath.Combine(fDocumentsPath, aName);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TApplicationFileService.DocumentsPath: string;
+function TStandardFileService.DocumentsPath: string;
 begin
   Result := fDocumentsPath;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TApplicationFileService.SettingsPath: string;
+function TStandardFileService.SettingsPath: string;
 begin
   Result := fSettingsPath;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TApplicationFileService.StartupPath: string;
+function TStandardFileService.StartupPath: string;
 begin
   Result := fStartupPath;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TApplicationFileService.DataPath: string;
+function TStandardFileService.DataPath: string;
 begin
   Result := fDataPath;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TApplicationFileService.Create;
+constructor TStandardFileService.Create;
 begin
   inherited Create;
 
@@ -119,7 +119,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-destructor TApplicationFileService.Destroy;
+destructor TStandardFileService.Destroy;
 begin
 
   inherited;

@@ -9,7 +9,7 @@ uses
   Base.Integrity;
 
 type
-  TMigrationRegistrar = class(TTransient, IMigrationRegistrar)
+  TMigrationRegistry = class(TTransient, IMigrationRegistry)
   public
     procedure Configure(const m: IMigrationManager);
   end;
@@ -24,7 +24,7 @@ type
 implementation
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TMigrationRegistrar.Configure(const m: IMigrationManager);
+procedure TMigrationRegistry.Configure(const m: IMigrationManager);
 begin
   m.Add(1, 1, TCreateDatabaseMigration, 'Create the initial schema');
 end;

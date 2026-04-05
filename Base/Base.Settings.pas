@@ -18,7 +18,7 @@ uses
   Base.Xml;
 
 type
-  ISettings = interface
+  ISettings = interface(IBvElement)
     ['{6AC76463-382B-4D9B-8C8C-E0F86E07ED78}']
     function Database: IBvElement;
     function DatabaseConfiguration(const aProvider: string; const aName: string = ''): IBvElement;
@@ -28,6 +28,8 @@ type
   public
     function Database: IBvElement; inline;
     function DatabaseConfiguration(const aProvider: string; const aName: string = ''): IBvElement;
+
+    constructor Create(var aOther: IBvElement);
   end;
 
 implementation
@@ -55,6 +57,12 @@ begin
        SameText(e.Name, aProvider) then exit(e);
 
   Result := nil;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+constructor TSettings.Create(var aOther: IBvElement);
+begin
+  inherited Create(aOther);
 end;
 
 end.
