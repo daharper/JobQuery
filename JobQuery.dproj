@@ -210,6 +210,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Presentation\Core\Presentation.Core.ViewController.pas"/>
+        <DCCReference Include="Presentation\Modules\Presentation.Modules.Searches.pas">
+            <Form>SearchesDataModule</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Presentation\Views\Presentation.Views.SearchesView.pas">
+            <Form>SearchesView</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
         <None Include="Resources\Settings.xml"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

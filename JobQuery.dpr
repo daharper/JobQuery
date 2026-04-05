@@ -35,7 +35,9 @@ uses
   Presentation.Modules.Main in 'Presentation\Modules\Presentation.Modules.Main.pas' {MainDataModule: TDataModule},
   Presentation.Views.View in 'Presentation\Views\Presentation.Views.View.pas' {View: TFrame},
   Presentation.Views.JobsView in 'Presentation\Views\Presentation.Views.JobsView.pas' {JobsView: TFrame},
-  Presentation.Core.ViewController in 'Presentation\Core\Presentation.Core.ViewController.pas';
+  Presentation.Core.ViewController in 'Presentation\Core\Presentation.Core.ViewController.pas',
+  Presentation.Modules.Searches in 'Presentation\Modules\Presentation.Modules.Searches.pas' {SearchesDataModule: TDataModule},
+  Presentation.Views.SearchesView in 'Presentation\Views\Presentation.Views.SearchesView.pas' {SearchesView: TFrame};
 
 {$R *.res}
 

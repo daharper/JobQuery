@@ -5,18 +5,21 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.WinXCtrls, Vcl.ToolWin, Vcl.ComCtrls, Vcl.ExtCtrls,
-  Vcl.CategoryButtons, Presentation.Modules.Main, Presentation.Core.ViewController;
+  Vcl.CategoryButtons, Presentation.Modules.Main, Presentation.Core.ViewController, Vcl.Buttons;
 
 type
   TMainForm = class(TForm)
     MainPanel: TPanel;
-    ToolBar1: TToolBar;
     MainSplitView: TSplitView;
-    tbrToggleMenu: TToolButton;
     ViewButtons: TCategoryButtons;
     ToolbarPanel: TPanel;
+    btnToggle: TSpeedButton;
+    btnFetchJobs: TSpeedButton;
+    procedure btnToggleClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure tbrToggleMenuClick(Sender: TObject);
+    procedure ShowApplicationsOnClick(Sender: TObject);
+    procedure ShowJobsOnClick(Sender: TObject);
+    procedure ShowSearchesOnClick(Sender: TObject);
   private
     fController: IViewController;
   public
@@ -42,9 +45,27 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TMainForm.tbrToggleMenuClick(Sender: TObject);
+procedure TMainForm.btnToggleClick(Sender: TObject);
 begin
   MainSplitView.Opened := not MainSplitView.Opened;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TMainForm.ShowJobsOnClick(Sender: TObject);
+begin
+  fController.Enter(vJobs);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TMainForm.ShowApplicationsOnClick(Sender: TObject);
+begin
+  fController.Enter(vApplications);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TMainForm.ShowSearchesOnClick(Sender: TObject);
+begin
+  fController.Enter(vSearches)
 end;
 
 end.

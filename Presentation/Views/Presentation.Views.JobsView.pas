@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels, dxSkinOffice2019Black,
   cxLookAndFeelPainters, cxStyles, Data.DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, Presentation.Modules.Jobs, cxCustomData, cxFilter, cxData, cxDataStorage,
   cxEdit, cxNavigator, dxDateRanges, dxScrollbarAnnotations, Presentation.Views.View;

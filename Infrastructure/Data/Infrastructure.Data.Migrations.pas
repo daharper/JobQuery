@@ -54,6 +54,11 @@ const
             Description       TEXT    NOT NULL DEFAULT '',
             Applied           INTEGER NOT NULL DEFAULT 0
         );
+
+        CREATE TABLE Searches (
+            Id                INTEGER PRIMARY KEY,
+            Title             TEXT    NOT NULL DEFAULT ''
+        );
         ''';
 begin
   inherited;

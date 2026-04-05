@@ -316,28 +316,31 @@ object MainForm: TMainForm
   OnShow = FormShow
   TextHeight = 15
   object MainPanel: TPanel
-    Left = 200
+    Left = 50
     Top = 40
-    Width = 869
+    Width = 1019
     Height = 838
     Align = alClient
     BevelOuter = bvNone
     ShowCaption = False
     TabOrder = 0
+    ExplicitLeft = 200
+    ExplicitWidth = 869
   end
   object MainSplitView: TSplitView
     Left = 0
     Top = 40
-    Width = 200
+    Width = 50
     Height = 838
     CloseStyle = svcCompact
+    Opened = False
     OpenedWidth = 200
     Placement = svpLeft
     TabOrder = 1
     object ViewButtons: TCategoryButtons
       Left = 0
       Top = 0
-      Width = 200
+      Width = 50
       Height = 838
       Align = alClient
       BevelOuter = bvNone
@@ -356,16 +359,19 @@ object MainForm: TMainForm
               Caption = '   Jobs'
               Hint = 'Show a list of jobs'
               ImageIndex = 1
+              OnClick = ShowJobsOnClick
             end
             item
               Caption = '   Applications'
               Hint = 'Show a list of job applications'
               ImageIndex = 2
+              OnClick = ShowApplicationsOnClick
             end
             item
               Caption = '   Searches'
               Hint = 'Show the current search criteria'
               ImageIndex = 3
+              OnClick = ShowSearchesOnClick
             end>
           VisibleGutter = False
         end>
@@ -374,6 +380,7 @@ object MainForm: TMainForm
       SelectedButtonColor = 15132390
       ShowHint = True
       TabOrder = 0
+      ExplicitTop = 3
     end
   end
   object ToolbarPanel: TPanel
@@ -386,27 +393,34 @@ object MainForm: TMainForm
     Color = 3288877
     ParentBackground = False
     TabOrder = 2
-    StyleElements = [seFont, seBorder]
-    object ToolBar1: TToolBar
-      Left = 0
-      Top = 0
-      Width = 1069
-      Height = 40
-      Align = alClient
-      ButtonHeight = 38
-      ButtonWidth = 39
-      Caption = 'ToolBar1'
+    object btnToggle: TSpeedButton
+      AlignWithMargins = True
+      Left = 12
+      Top = 3
+      Width = 23
+      Height = 34
+      Margins.Left = 12
+      Align = alLeft
+      ImageIndex = 0
       Images = MainDataModule.MainImageList
-      Indent = 5
-      TabOrder = 0
-      StyleElements = [seFont, seBorder]
-      object tbrToggleMenu: TToolButton
-        Left = 5
-        Top = 0
-        Caption = 'tbrToggleMenu'
-        ImageIndex = 0
-        OnClick = tbrToggleMenuClick
-      end
+      OnClick = btnToggleClick
+      ExplicitLeft = 48
+      ExplicitTop = 8
+      ExplicitHeight = 22
+    end
+    object btnFetchJobs: TSpeedButton
+      AlignWithMargins = True
+      Left = 1034
+      Top = 3
+      Width = 23
+      Height = 34
+      Margins.Right = 12
+      Align = alRight
+      ImageIndex = 4
+      Images = MainDataModule.MainImageList
+      ExplicitLeft = 256
+      ExplicitTop = 8
+      ExplicitHeight = 22
     end
   end
 end

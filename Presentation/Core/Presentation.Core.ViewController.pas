@@ -10,7 +10,7 @@ uses
   Presentation.Views.View;
 
 type
-  TViewType = (vNone = 0, vJobs = 1);
+  TViewType = (vNone = 0, vJobs, vApplications, vSearches);
 
   IViewItem = interface
     ['{9CEF6251-1A23-415D-8689-7D7872FD1FA3}']
@@ -64,6 +64,7 @@ implementation
 
 uses
   Presentation.Views.JobsView,
+  Presentation.Views.SearchesView,
   Base.Integrity;
 
 { TViewController }
@@ -105,6 +106,7 @@ begin
   fActiveView := vNone;
 
   Add(vJobs, TJobsView);
+  Add(vSearches, TSearchesView);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

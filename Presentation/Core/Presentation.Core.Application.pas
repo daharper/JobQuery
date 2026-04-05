@@ -12,6 +12,7 @@ uses
   Base.Application,
   Presentation.Modules.Main,
   Presentation.Modules.Jobs,
+  Presentation.Modules.Searches,
   Presentation.Forms.Main;
 
 type
@@ -39,9 +40,10 @@ begin
 
   Application.CreateForm(TMainDataModule, MainDataModule);
   Application.CreateForm(TJobsDataModule, JobsDataModule);
+  Application.CreateForm(TSearchesDataModule, SearchesDataModule);
   Application.CreateForm(TMainForm, MainForm);
 
-  ConfigureConnectionsFromDbContext([JobsDataModule.JobsFDConnection]);
+  ConfigureConnectionsFromDbContext(MainDataModule.FDConnection);
 
   Application.Run;
 end;
