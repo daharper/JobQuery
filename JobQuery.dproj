@@ -88,7 +88,7 @@
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
         <SanitizedProjectName>JobQuery</SanitizedProjectName>
-        <Custom_Styles>&quot;Windows Modern Blue|VCLSTYLE|$(BDSCOMMONDIR)\Styles\WindowsModernBlue.vsf&quot;</Custom_Styles>
+        <Custom_Styles>&quot;Windows Modern Dark|VCLSTYLE|$(BDSCOMMONDIR)\Styles\WindowsModernDark.vsf&quot;</Custom_Styles>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_UsePackage>FireDACIBDriver;vclwinx;dxComnRS37;fmx;dxDockingRS37;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;FireDACCommonODBC;dxServerModeRS37;dxCoreRS37;cxPivotGridRS37;IndyProtocols;vclx;Skia.Package.RTL;dxPScxTLLnkRS37;dbxcds;vcledge;dxSpreadSheetConditionalFormattingDialogsRS37;dxEMFRS37;FmxTeeUI;dxPSCoreRS37;dxPSPrVwRibbonRS37;htmleditcore_xe13;cxIBXAdaptersRS37;dxRichEditDocumentModelRS37;FireDACSqliteDriver;DbxClientDriver;lmdrtdesign;dxPSdxDBTVLnkRS37;soapmidas;TeeUI;dxPScxExtCommonRS37;dbexpress;inet;vcltouch;cxSchedulerWebServiceStorageRS37;fmxdae;dxTabbedMDIRS37;CustomIPTransport;dxFireDACEMFRS37;cxGridRS37;dxSpellCheckerRS37;lmdrtide;cxFireDACAdaptersRS37;dxorgcRS37;IndySystem;lmdrtl;dxBarRS37;dxCloudServiceLibraryRS37;htmledit_xe13;lmdrtinspector;dxPScxPCProdRS37;htmlcomp_xe13;ibxbindings;dxPSRichEditControlLnkRS37;dxGDIPlusRS37;vclFireDAC;cxADOAdaptersRS37;FireDACCommon;dxBarDBNavRS37;dxPDFViewerRS37;dxmdsRS37;dxPSdxOCLnkRS37;bindcompdbx;lmdrtdocking;lmdrtdialog;rtl;FireDACMySQLDriver;TextEditor.Delphi.Runtime;dxADOEMFRS37;DBXSqliteDriver;dxPSdxDBOCLnkRS37;cxSchedulerTreeBrowserRS37;dxChartControlRS37;cxGridEMFRS37;vclimg;inetdbxpress;FireDAC;htmlcompfm_xe13;dxNavBarRS37;xmlrtl;dxSpreadSheetCoreConditionalFormattingDialogsRS37;dxADOServerModeRS37;ibxpress;dxWizardControlRS37;dxPScxGridLnkRS37;dsnap;lmdrtprint;dxPScxSchedulerLnkRS37;vclib;dxHttpIndyRequestRS37;fmxobj;bindcompvclsmp;lmdrtscript;dxTileControlRS37;dxSpreadSheetReportDesignerRS37;dxGaugeControlRS37;htmleditfm_xe13;dxOrgChartAdvancedCustomizeFormRS37;dxPSdxMapControlLnkRS37;cxVerticalGridRS37;dxBarExtItemsRS37;cxLibraryRS37;dxdborRS37;dxSpreadSheetRS37;cxSchedulerGridRS37;dxFlowChartAdvancedCustomizeFormRS37;dxPSDBTeeChartRS37;lmdrtscriptimp;dxPSdxLCLnkRS37;FireDACCommonDriver;RadiantShapesFmx_Design;IndyIPClient;bindcompvclwinx;dxPSLnksRS37;dxPSTeeChartRS37;bindcompfmx;cxTreeListRS37;dxFlowChartRS37;inetdb;ibmonitor;cxPivotGridChartRS37;dxFireDACServerModeRS37;Tee;vclactnband;dxMapControlRS37;fmxFireDAC;lmdrtspell;DBXMySQLDriver;VclSmp;fmxase;cxSchedulerRibbonStyleEventEditorRS37;dbrtl;hclcore_xe13;dxPScxCommonRS37;Skia.Package.FMX;dxPSdxSpreadSheetLnkRS37;dxPSdxChartControlLnkRS37;TeeDB;FireDACMSAccDriver;dxRichEditControlRS37;dxPsPrVwAdvRS37;dxPSdxPDFViewerLnkRS37;dxDBXServerModeRS37;cxSchedulerRS37;cxExportRS37;vcldsnap;DBXInterBaseDriver;dxRichEditControlCoreRS37;RadiantShapesFmx;Skia.Package.VCL;lmdrtsyntax;dxPScxPivotGridLnkRS37;vcldb;dxBarExtDBItemsRS37;dxPSdxFCLnkRS37;bindcomp;inetstn;dxFlowChartLayoutsRS37;IndyCore;RESTBackendComponents;dxRibbonRS37;dxSpreadSheetCoreRS37;dxGanttControlRS37;dxPScxVGridLnkRS37;dxPSdxGaugeControlLnkRS37;FireDACADSDriver;RaizeComponentsVclDb;RESTComponents;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;dxSkinsCoreRS37;dxdbtrRS37;dxRichEditCoreRS37;cxTreeListdxBarPopupMenuRS37;FireDACPgDriver;dxRibbonCustomizationFormRS37;tethering;dxtrmdRS37;bindcompvcl;cxPivotGridOLAPRS37;dxFlowChartDesignerRS37;CloudService;lmdrtrtlx;FMXTee;soaprtl;RaizeComponentsVcl;soapserver;$(DCC_UsePackage)</DCC_UsePackage>
@@ -186,13 +186,30 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="Infrastructure\Data\Infrastructure.Data.Migrations.pas"/>
         <DCCReference Include="Presentation\Core\Presentation.Core.Application.pas"/>
         <DCCReference Include="Presentation\Core\Presentation.Core.Composition.pas"/>
-        <DCCReference Include="Presentation\Modules\Presentation.Modules.Main.pas">
-            <Form>MainDataModule</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="Presentation\Core\Presentation.Core.Settings.pas"/>
         <DCCReference Include="App\Core\App.Core.Settings.pas"/>
         <DCCReference Include="Presentation\Core\Presentation.Core.Files.pas"/>
+        <DCCReference Include="Presentation\Modules\Presentation.Modules.Jobs.pas">
+            <Form>JobsDataModule</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Presentation\Modules\Presentation.Modules.Main.pas">
+            <Form>MainDataModule</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Presentation\Views\Presentation.Views.View.pas">
+            <Form>View</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Presentation\Views\Presentation.Views.JobsView.pas">
+            <Form>JobsView</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TFrame</DesignClass>
+        </DCCReference>
+        <DCCReference Include="Presentation\Core\Presentation.Core.ViewController.pas"/>
         <None Include="Resources\Settings.xml"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

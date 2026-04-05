@@ -55,7 +55,8 @@ uses
   Infrastructure.Data.Migrations,
   Presentation.Core.Application,
   Presentation.Core.Settings,
-  Presentation.Core.Files;
+  Presentation.Core.Files,
+  Presentation.Core.ViewController;
 
 { TApplicationModule }
 

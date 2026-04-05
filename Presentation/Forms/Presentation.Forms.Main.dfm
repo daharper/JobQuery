@@ -313,5 +313,100 @@ object MainForm: TMainForm
     00E000030000070000E000030000070001C000030000070007C0000100000700
     3F800001000007FFFC000001000007FFE0000000000000000000000000008000
     0000000000008000000000010000C000000000030000F8000000000F0000}
+  OnShow = FormShow
   TextHeight = 15
+  object MainPanel: TPanel
+    Left = 200
+    Top = 40
+    Width = 869
+    Height = 838
+    Align = alClient
+    BevelOuter = bvNone
+    ShowCaption = False
+    TabOrder = 0
+  end
+  object MainSplitView: TSplitView
+    Left = 0
+    Top = 40
+    Width = 200
+    Height = 838
+    CloseStyle = svcCompact
+    OpenedWidth = 200
+    Placement = svpLeft
+    TabOrder = 1
+    object ViewButtons: TCategoryButtons
+      Left = 0
+      Top = 0
+      Width = 200
+      Height = 838
+      Align = alClient
+      BevelOuter = bvNone
+      BorderStyle = bsNone
+      ButtonFlow = cbfHorizontal
+      ButtonHeight = 48
+      ButtonWidth = 150
+      ButtonOptions = [boGradientFill, boShowCaptions]
+      Categories = <
+        item
+          Color = 16771839
+          Collapsed = False
+          CanCollapse = False
+          Items = <
+            item
+              Caption = '   Jobs'
+              Hint = 'Show a list of jobs'
+              ImageIndex = 1
+            end
+            item
+              Caption = '   Applications'
+              Hint = 'Show a list of job applications'
+              ImageIndex = 2
+            end
+            item
+              Caption = '   Searches'
+              Hint = 'Show the current search criteria'
+              ImageIndex = 3
+            end>
+          VisibleGutter = False
+        end>
+      Images = MainDataModule.MainImageList
+      RegularButtonColor = clWhite
+      SelectedButtonColor = 15132390
+      ShowHint = True
+      TabOrder = 0
+    end
+  end
+  object ToolbarPanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 1069
+    Height = 40
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 3288877
+    ParentBackground = False
+    TabOrder = 2
+    StyleElements = [seFont, seBorder]
+    object ToolBar1: TToolBar
+      Left = 0
+      Top = 0
+      Width = 1069
+      Height = 40
+      Align = alClient
+      ButtonHeight = 38
+      ButtonWidth = 39
+      Caption = 'ToolBar1'
+      Images = MainDataModule.MainImageList
+      Indent = 5
+      TabOrder = 0
+      StyleElements = [seFont, seBorder]
+      object tbrToggleMenu: TToolButton
+        Left = 5
+        Top = 0
+        Caption = 'tbrToggleMenu'
+        ImageIndex = 0
+        OnClick = tbrToggleMenuClick
+      end
+    end
+  end
 end

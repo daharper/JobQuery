@@ -51,7 +51,8 @@ const
             Latitude          TEXT    NOT NULL DEFAULT '',
             Title             TEXT    NOT NULL DEFAULT '',
             Url               TEXT    NOT NULL DEFAULT '',
-            Description       TEXT    NOT NULL DEFAULT ''
+            Description       TEXT    NOT NULL DEFAULT '',
+            Applied           INTEGER NOT NULL DEFAULT 0
         );
         ''';
 begin

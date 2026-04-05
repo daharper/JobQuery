@@ -408,6 +408,8 @@ begin
   if not Supports(aCtx.Payload, ISqliteContextPayload, payload) then
     raise Exception.Create('SQLite context payload missing or wrong type.');
 
+  aConnection.Connected := false;
+
   var driverId := aConnection.Params.DriverID;
 
   aConnection.LoginPrompt := False;
@@ -443,6 +445,7 @@ begin
   fConnection.Params.Clear;
   fConnection.Params.DriverID := 'SQLite';
   fConnection.Params.Database := aOpt.DatabasePath;
+  fConnection.Params.Add('LockingMode=Normal');
 
   if aOpt.BusyTimeoutMs > 0 then
     fConnection.Params.Values['BusyTimeout'] := IntToStr(aOpt.BusyTimeoutMs);

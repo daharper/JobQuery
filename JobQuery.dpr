@@ -28,10 +28,14 @@ uses
   Infrastructure.Data.Migrations in 'Infrastructure\Data\Infrastructure.Data.Migrations.pas',
   Presentation.Core.Application in 'Presentation\Core\Presentation.Core.Application.pas',
   Presentation.Core.Composition in 'Presentation\Core\Presentation.Core.Composition.pas',
-  Presentation.Modules.Main in 'Presentation\Modules\Presentation.Modules.Main.pas' {MainDataModule: TDataModule},
   Presentation.Core.Settings in 'Presentation\Core\Presentation.Core.Settings.pas',
   App.Core.Settings in 'App\Core\App.Core.Settings.pas',
-  Presentation.Core.Files in 'Presentation\Core\Presentation.Core.Files.pas';
+  Presentation.Core.Files in 'Presentation\Core\Presentation.Core.Files.pas',
+  Presentation.Modules.Jobs in 'Presentation\Modules\Presentation.Modules.Jobs.pas' {JobsDataModule: TDataModule},
+  Presentation.Modules.Main in 'Presentation\Modules\Presentation.Modules.Main.pas' {MainDataModule: TDataModule},
+  Presentation.Views.View in 'Presentation\Views\Presentation.Views.View.pas' {View: TFrame},
+  Presentation.Views.JobsView in 'Presentation\Views\Presentation.Views.JobsView.pas' {JobsView: TFrame},
+  Presentation.Core.ViewController in 'Presentation\Core\Presentation.Core.ViewController.pas';
 
 {$R *.res}
 
@@ -42,7 +46,7 @@ begin
 //  Application.Initialize;
 //  Application.MainFormOnTaskbar := True;
 //  Application.Title := 'Job Query';
-//  TStyleManager.TrySetStyle('Windows Modern Blue');
+//  TStyleManager.TrySetStyle('Windows Modern Dark');
 //  Application.CreateForm(TMainDataModule, MainDataModule);
 //  Application.CreateForm(TMainForm, MainForm);
 //  Application.Run;

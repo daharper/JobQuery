@@ -11,6 +11,7 @@ uses
   FireDAC.Comp.Client,
   Base.Application,
   Presentation.Modules.Main,
+  Presentation.Modules.Jobs,
   Presentation.Forms.Main;
 
 type
@@ -34,12 +35,13 @@ begin
 
   Application.Title := 'Job Query';
 
-  TStyleManager.TrySetStyle('Windows Modern Blue');
+  TStyleManager.TrySetStyle('Windows Modern Dark');
 
   Application.CreateForm(TMainDataModule, MainDataModule);
+  Application.CreateForm(TJobsDataModule, JobsDataModule);
   Application.CreateForm(TMainForm, MainForm);
 
-  ConfigureConnectionsFromDbContext([MainDataModule.FDConnection1]);
+  ConfigureConnectionsFromDbContext([JobsDataModule.JobsFDConnection]);
 
   Application.Run;
 end;
