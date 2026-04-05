@@ -21,12 +21,18 @@ type
     procedure Execute(const aDb: IDbSessionManager); override;
   end;
 
+  TSeedDatabaseMigration = class(TMigration)
+  public
+    procedure Execute(const aDb: IDbSessionManager); override;
+  end;
+
 implementation
 
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TMigrationRegistry.Configure(const m: IMigrationManager);
 begin
   m.Add(1, 1, TCreateDatabaseMigration, 'Create the initial schema');
+  m.Add(1, 2, TSeedDatabaseMigration, 'Seed the database');
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -66,4 +72,17 @@ begin
   aDb.CurrentSession.Connection.ExecSQL(SQL);
 end;
 
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TSeedDatabaseMigration.Execute(const aDb: IDbSessionManager);
+const
+  SQL = '''
+        INSERT INTO Searches (Id, Title) VALUES
+        (1, 'Delphi Developer'),
+        (2, 'C# Developer');
+        ''';
+begin
+  inherited;
+
+  aDb.CurrentSession.Connection.ExecSQL(SQL);
+end;
 end.

@@ -11,15 +11,15 @@ uses
 
 type
   TSearchesView = class(TView)
-    JobsGrid: TcxGrid;
-    Searches: TcxGridDBTableView;
-    Level: TcxGridLevel;
-    SearchesId: TcxGridDBColumn;
-    SearchesTitle: TcxGridDBColumn;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    cxGrid1DBTableView1Id: TcxGridDBColumn;
+    cxGrid1DBTableView1Title: TcxGridDBColumn;
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure Initialize; override;
   end;
 
 var
@@ -28,5 +28,16 @@ var
 implementation
 
 {$R *.dfm}
+
+{ TSearchesView }
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TSearchesView.Initialize;
+begin
+  inherited;
+
+  cxGrid1DBTableView1Title.Width := Width - 10;
+  SearchesDataModule.SearchDataSource.DataSet.Open;
+end;
 
 end.

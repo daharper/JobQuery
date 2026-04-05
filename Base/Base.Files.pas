@@ -37,7 +37,6 @@ type
   /// </summary>
   TStandardFileService = class(TSingleton, IFileService)
   private
-    fText: string;
     fStartupPath:   string;
     fDataPath:      string;
     fDocumentsPath: string;

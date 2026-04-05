@@ -1,5 +1,5 @@
 inherited SearchesView: TSearchesView
-  object JobsGrid: TcxGrid
+  object cxGrid1: TcxGrid
     Left = 0
     Top = 0
     Width = 958
@@ -8,28 +8,31 @@ inherited SearchesView: TSearchesView
     TabOrder = 0
     LookAndFeel.NativeStyle = False
     LookAndFeel.SkinName = 'Office2019Black'
-    object Searches: TcxGridDBTableView
-      FindPanel.DisplayMode = fpdmAlways
-      FindPanel.FocusViewOnApplyFilter = True
-      DataController.DataModeController.GridMode = True
-      DataController.DataSource = SearchesDataModule.SearchesDataSource
+    ExplicitLeft = 416
+    ExplicitTop = 232
+    ExplicitWidth = 250
+    ExplicitHeight = 200
+    object cxGrid1DBTableView1: TcxGridDBTableView
+      Navigator.Visible = True
+      DataController.DataSource = SearchesDataModule.SearchDataSource
+      DataController.KeyFieldNames = 'Id'
+      NewItemRow.Visible = True
+      OptionsData.Appending = True
       OptionsData.CancelOnExit = False
-      OptionsData.Deleting = False
       OptionsData.DeletingConfirmation = False
-      OptionsData.Editing = False
-      OptionsData.Inserting = False
-      Styles.UseOddEvenStyles = bFalse
-      object SearchesId: TcxGridDBColumn
+      OptionsView.GroupByBox = False
+      object cxGrid1DBTableView1Id: TcxGridDBColumn
         DataBinding.FieldName = 'Id'
         Visible = False
       end
-      object SearchesTitle: TcxGridDBColumn
+      object cxGrid1DBTableView1Title: TcxGridDBColumn
         DataBinding.FieldName = 'Title'
-        Width = 400
+        MinWidth = 200
+        Width = 500
       end
     end
-    object Level: TcxGridLevel
-      GridView = Searches
+    object cxGrid1Level1: TcxGridLevel
+      GridView = cxGrid1DBTableView1
     end
   end
 end
