@@ -220,6 +220,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <FormType>dfm</FormType>
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
+        <DCCReference Include="App\Core\App.Core.Contracts.pas"/>
+        <DCCReference Include="App\UseCases\App.UseCases.FetchNewJobsUseCase.pas"/>
+        <DCCReference Include="Domain\Domain.Jobs\Domain.Jobs.JobRepository.pas"/>
         <None Include="Resources\Settings.xml"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

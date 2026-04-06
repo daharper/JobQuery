@@ -37,7 +37,10 @@ uses
   Presentation.Views.JobsView in 'Presentation\Views\Presentation.Views.JobsView.pas' {JobsView: TFrame},
   Presentation.Core.ViewController in 'Presentation\Core\Presentation.Core.ViewController.pas',
   Presentation.Modules.Searches in 'Presentation\Modules\Presentation.Modules.Searches.pas' {SearchesDataModule: TDataModule},
-  Presentation.Views.SearchesView in 'Presentation\Views\Presentation.Views.SearchesView.pas' {SearchesView: TFrame};
+  Presentation.Views.SearchesView in 'Presentation\Views\Presentation.Views.SearchesView.pas' {SearchesView: TFrame},
+  App.Core.Contracts in 'App\Core\App.Core.Contracts.pas',
+  App.UseCases.FetchNewJobsUseCase in 'App\UseCases\App.UseCases.FetchNewJobsUseCase.pas',
+  Domain.Jobs.JobRepository in 'Domain\Domain.Jobs\Domain.Jobs.JobRepository.pas';
 
 {$R *.res}
 

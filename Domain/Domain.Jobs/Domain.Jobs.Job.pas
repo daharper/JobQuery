@@ -142,10 +142,6 @@ type
 
   end;
 
-  IJobRepository = interface(IDbSet<IJob, TJob>)
-    ['{9C132F99-B4FF-4C86-83B8-26268A26490F}']
-  end;
-
 implementation
 
 { TJob }
