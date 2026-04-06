@@ -58,10 +58,10 @@ begin
     var url := Format(BASE_URL,
       [
         fSettings.Url,
-        fSettings.Id,
-        fSettings.Key,
-        search.Title,
-        search.Location,
+        TNetEncoding.URL.Encode(fSettings.Id),
+        TNetEncoding.URL.Encode(fSettings.Key),
+        TNetEncoding.URL.Encode(search.Title),
+        TNetEncoding.URL.Encode(search.Location),
         search.MaxResults
       ]);
 
@@ -89,11 +89,11 @@ begin
       job.Title           := Json.AsStr(obj, 'title');
       job.Category        := Json.AsNestedStr(obj, 'category', 'label');
       job.Company         := Json.AsNestedStr(obj, 'company', 'display_name');
-      job.Area            := Json.NestedArrayAsStr(obj, 'location', 'area');
+//      job.Area            := Json.NestedArrayAsStr(obj, 'location', 'area');
       job.Location        := Json.AsNestedStr(obj, 'location', 'display_name');
       job.CreatedAt       := TConvert.ToDateTimeISO8601UtcOr(Json.AsStr(obj, 'created'), TConvert.UtcNow);
-      job.MinSalary       := Json.AsStr(obj, 'salary_min').ToInteger;
-      job.MaxSalary       := Json.AsStr(obj, 'salary_max').ToInteger;
+      job.MinSalary       := Trunc(TConvert.ToDoubleOr(Json.AsStr(obj, 'salary_min'), 0));
+      job.MaxSalary       := Trunc(TConvert.ToDoubleOr(Json.AsStr(obj, 'salary_max'), 0));
       job.SalaryPredicted := Json.AsStr(obj, 'salary_is_predicted').ToBoolean;
       job.ContractType    := Json.AsStr(obj, 'contract_type');
       job.ContractTime    := Json.AsStr(obj, 'contract_time');
