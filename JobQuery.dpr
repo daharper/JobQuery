@@ -24,23 +24,19 @@ uses
   Base.Sqlite in 'Base\Base.Sqlite.pas',
   Base.Xml in 'Base\Base.Xml.pas',
   Infrastructure.Data.Repositories in 'Infrastructure\Data\Infrastructure.Data.Repositories.pas',
-  Domain.Jobs.Job in 'Domain\Domain.Jobs\Domain.Jobs.Job.pas',
+  Domain.Job in 'Domain\Domain.Job.pas',
   Infrastructure.Data.Migrations in 'Infrastructure\Data\Infrastructure.Data.Migrations.pas',
-  Presentation.Core.Application in 'Presentation\Core\Presentation.Core.Application.pas',
-  Presentation.Core.Composition in 'Presentation\Core\Presentation.Core.Composition.pas',
-  Presentation.Core.Settings in 'Presentation\Core\Presentation.Core.Settings.pas',
-  App.Core.Settings in 'App\Core\App.Core.Settings.pas',
-  Presentation.Core.Files in 'Presentation\Core\Presentation.Core.Files.pas',
-  Presentation.Modules.Jobs in 'Presentation\Modules\Presentation.Modules.Jobs.pas' {JobsDataModule: TDataModule},
+  Presentation.Host.Application in 'Presentation\Host\Presentation.Host.Application.pas',
+  Presentation.Host.Composition in 'Presentation\Host\Presentation.Host.Composition.pas',
+  App.Common.Settings in 'App\Common\App.Common.Settings.pas',
+  Presentation.Modules.Data in 'Presentation\Modules\Presentation.Modules.Data.pas' {DataDataModule: TDataModule},
   Presentation.Modules.Main in 'Presentation\Modules\Presentation.Modules.Main.pas' {MainDataModule: TDataModule},
   Presentation.Views.View in 'Presentation\Views\Presentation.Views.View.pas' {View: TFrame},
   Presentation.Views.JobsView in 'Presentation\Views\Presentation.Views.JobsView.pas' {JobsView: TFrame},
-  Presentation.Core.ViewController in 'Presentation\Core\Presentation.Core.ViewController.pas',
-  Presentation.Modules.Searches in 'Presentation\Modules\Presentation.Modules.Searches.pas' {SearchesDataModule: TDataModule},
+  Presentation.Controllers.Views in 'Presentation\Controllers\Presentation.Controllers.Views.pas',
   Presentation.Views.SearchesView in 'Presentation\Views\Presentation.Views.SearchesView.pas' {SearchesView: TFrame},
-  App.Core.Contracts in 'App\Core\App.Core.Contracts.pas',
+  App.Common.Contracts in 'App\Common\App.Common.Contracts.pas',
   App.UseCases.FetchNewJobsUseCase in 'App\UseCases\App.UseCases.FetchNewJobsUseCase.pas',
-  Domain.Jobs.JobRepository in 'Domain\Domain.Jobs\Domain.Jobs.JobRepository.pas',
   Infrastructure.Http.Adzuna in 'Infrastructure\Http\Infrastructure.Http.Adzuna.pas',
   App.Facades.Jobs in 'App\Facades\App.Facades.Jobs.pas';
 
@@ -63,10 +59,9 @@ begin
 
   var app := ApplicationBuilder
                   .AddModule<TApplicationModule>
-                  .LoadSettings<IApplicationSettings>
+                  .LoadSettings<IAppSettings>
                   .ConfigureDatabase
                   .PerformMigrations
-                  .AddAliases<TAliasModule>
                   .Build;
 
   app.Execute;

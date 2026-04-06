@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Presentation.Views.View, Presentation.Modules.Searches, cxGraphics, cxControls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Presentation.Views.View, Presentation.Modules.Data, cxGraphics, cxControls,
   cxLookAndFeels, cxLookAndFeelPainters, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit, cxNavigator,
   dxDateRanges, dxScrollbarAnnotations, Data.DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
@@ -37,7 +37,7 @@ begin
   inherited;
 
   cxGrid1DBTableView1Title.Width := Width - 10;
-  SearchesDataModule.SearchDataSource.DataSet.Open;
+  DataDataModule.SearchDataSource.DataSet.Open;
 end;
 
 end.

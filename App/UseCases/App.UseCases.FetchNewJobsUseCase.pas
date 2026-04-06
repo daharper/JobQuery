@@ -4,9 +4,8 @@ interface
 
 uses
   Base.Core,
-  Domain.Jobs.Job,
-  Domain.Jobs.JobRepository,
-  App.Core.Contracts;
+  Domain.Job,
+  App.Common.Contracts;
 
 type
   IFetchNewJobsUseCase = interface
@@ -18,9 +17,12 @@ type
   private
     fFeedClient: IJobFeedClient;
     fRepository: IJobRepository;
+    fUpdatedCount: integer;
   public
+    property UpdatedCount: integer read fUpdatedCount;
+
     procedure Execute;
-    constructor Create(const aFeedCLient: IJobFeedClient; const aRepository: IJobRepository);
+    constructor Create(const aFeedClient: IJobFeedClient; const aRepository: IJobRepository);
   end;
 
 implementation
@@ -28,7 +30,7 @@ implementation
 { TFetchNewJobsUseCase }
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TFetchNewJobsUseCase.Create(const aFeedCLient: IJobFeedClient; const aRepository: IJobRepository);
+constructor TFetchNewJobsUseCase.Create(const aFeedClient: IJobFeedClient; const aRepository: IJobRepository);
 begin
   //
 end;

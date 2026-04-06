@@ -14,7 +14,7 @@ inherited SearchesView: TSearchesView
     ExplicitHeight = 200
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Visible = True
-      DataController.DataSource = SearchesDataModule.SearchDataSource
+      DataController.DataSource = DataDataModule.SearchDataSource
       DataController.KeyFieldNames = 'Id'
       NewItemRow.Visible = True
       OptionsData.Appending = True

@@ -12,7 +12,7 @@ inherited JobsView: TJobsView
       FindPanel.DisplayMode = fpdmAlways
       FindPanel.FocusViewOnApplyFilter = True
       DataController.DataModeController.GridMode = True
-      DataController.DataSource = JobsDataModule.JobsDataSource
+      DataController.DataSource = DataDataModule.JobsDataSource
       OptionsData.Deleting = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
