@@ -14,7 +14,7 @@ The architecture for the demo is now in place:
 
 The evolving **Project Galahad** types are located in the Base folder.
 
-Hopefully, the project will be finished shortly.
+Hopefully, the project will be finished shortly, I'm currently working on the Adzuna REST Client.
 
 DevExpress is required to build the project, but even without DevExpress, you can run the executable in the Win32\Debug folder, and view the source code.
 
