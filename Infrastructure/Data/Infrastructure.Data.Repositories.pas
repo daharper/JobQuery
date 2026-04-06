@@ -16,7 +16,7 @@ type
   public
     constructor Create(const aDb: IDbSessionManager);
 
-    function HasJob(const aSource: string; const aSourceRef: string): boolean;
+    function IsUnknownJob(const aSource: string; const aSourceRef: string): boolean;
   end;
 
   TSearchRepository = class(TDbSet<ISearch, TSearch>, ISearchRepository)
@@ -35,9 +35,9 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TJobRepository.HasJob(const aSource, aSourceRef: string): boolean;
+function TJobRepository.IsUnknownJob(const aSource, aSourceRef: string): boolean;
 const
-  SQL = 'SELECT 1 FROM MyTable WHERE Source = :Src AND SourceRef = :Ref LIMIT 1';
+  SQL = 'SELECT 1 FROM Jobs WHERE Source = :Src AND SourceRef = :Ref LIMIT 1';
 var
   scope: TScope;
 begin

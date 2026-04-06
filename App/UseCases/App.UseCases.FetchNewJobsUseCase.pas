@@ -41,13 +41,12 @@ begin
   if jobs = nil then exit;
 
   for var job in jobs do
-  begin
-    if fRepository.HasJob(job.Source, job.SourceRef) then continue;
+    if fRepository.IsUnknownJob(job.Source, job.SourceRef) then
+    begin
+      fRepository.Save(job);
+      Inc(fUpdatedCount);
+    end;
 
-    fRepository.Save(job);
-
-    Inc(fUpdatedCount);
-  end;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
