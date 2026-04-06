@@ -25,9 +25,10 @@ implementation
 {----------------------------------------------------------------------------------------------------------------------}
 constructor TAdzunaJobFeedClient.Create(const appSettings: IAppSettings);
 begin
-
+  fSettings := appSettings.Adzuna;
 end;
 
+{----------------------------------------------------------------------------------------------------------------------}
 function TAdzunaJobFeedClient.FetchLatestJobs: TArray<IJob>;
 begin
 
