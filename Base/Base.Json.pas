@@ -77,6 +77,9 @@ type
 
 implementation
 
+uses
+  System.Generics.Collections;
+
 {----------------------------------------------------------------------------------------------------------------------}
 class function Json.Parse(const aJsonText: string): TJSONValue;
 begin

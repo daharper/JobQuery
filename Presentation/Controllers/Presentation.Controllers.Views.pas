@@ -10,7 +10,7 @@ uses
   Presentation.Views.View;
 
 type
-  TViewType = (vNone = 0, vJobs, vApplications, vSearches);
+  TViewType = (vNone = 0, vJobs, vSearches);
 
   IViewItem = interface
     ['{9CEF6251-1A23-415D-8689-7D7872FD1FA3}']

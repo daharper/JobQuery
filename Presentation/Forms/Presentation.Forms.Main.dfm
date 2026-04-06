@@ -313,35 +313,38 @@ object MainForm: TMainForm
     00E000030000070000E000030000070001C000030000070007C0000100000700
     3F800001000007FFFC000001000007FFE0000000000000000000000000008000
     0000000000008000000000010000C000000000030000F8000000000F0000}
+  Position = poScreenCenter
   OnShow = FormShow
   TextHeight = 15
   object MainPanel: TPanel
-    Left = 50
-    Top = 40
-    Width = 1019
-    Height = 838
+    AlignWithMargins = True
+    Left = 53
+    Top = 8
+    Width = 1013
+    Height = 867
+    Margins.Top = 8
     Align = alClient
     BevelOuter = bvNone
     ShowCaption = False
     TabOrder = 0
-    ExplicitLeft = 200
-    ExplicitWidth = 869
+    ExplicitLeft = 112
+    ExplicitWidth = 954
   end
   object MainSplitView: TSplitView
     Left = 0
-    Top = 40
+    Top = 0
     Width = 50
-    Height = 838
+    Height = 878
     CloseStyle = svcCompact
     Opened = False
-    OpenedWidth = 200
+    OpenedWidth = 160
     Placement = svpLeft
     TabOrder = 1
     object ViewButtons: TCategoryButtons
       Left = 0
       Top = 0
       Width = 50
-      Height = 838
+      Height = 878
       Align = alClient
       BevelOuter = bvNone
       BorderStyle = bsNone
@@ -356,22 +359,28 @@ object MainForm: TMainForm
           CanCollapse = False
           Items = <
             item
-              Caption = '   Jobs'
+              Caption = '   Toggle Menu'
+              Hint = 'Open or close the Menu'
+              ImageIndex = 0
+              OnClick = ToggleMenuOnClick
+            end
+            item
+              Caption = '   Job View'
               Hint = 'Show a list of jobs'
               ImageIndex = 1
               OnClick = ShowJobsOnClick
             end
             item
-              Caption = '   Applications'
-              Hint = 'Show a list of job applications'
+              Caption = '   Search View'
+              Hint = 'Show the current search criteria'
               ImageIndex = 2
-              OnClick = ShowApplicationsOnClick
+              OnClick = ShowSearchesOnClick
             end
             item
-              Caption = '   Searches'
-              Hint = 'Show the current search criteria'
+              Caption = '   Check Jobs'
+              Hint = 'Check for new jobs'
               ImageIndex = 3
-              OnClick = ShowSearchesOnClick
+              OnClick = CheckJobsOnClick
             end>
           VisibleGutter = False
         end>
@@ -380,48 +389,7 @@ object MainForm: TMainForm
       SelectedButtonColor = 15132390
       ShowHint = True
       TabOrder = 0
-      ExplicitTop = 3
-    end
-  end
-  object ToolbarPanel: TPanel
-    Left = 0
-    Top = 0
-    Width = 1069
-    Height = 40
-    Align = alTop
-    BevelOuter = bvNone
-    Color = 3288877
-    ParentBackground = False
-    TabOrder = 2
-    object btnToggle: TSpeedButton
-      AlignWithMargins = True
-      Left = 12
-      Top = 3
-      Width = 23
-      Height = 34
-      Margins.Left = 12
-      Align = alLeft
-      ImageIndex = 0
-      Images = MainDataModule.MainImageList
-      OnClick = btnToggleClick
-      ExplicitLeft = 48
-      ExplicitTop = 8
-      ExplicitHeight = 22
-    end
-    object btnFetchJobs: TSpeedButton
-      AlignWithMargins = True
-      Left = 1034
-      Top = 3
-      Width = 23
-      Height = 34
-      Margins.Right = 12
-      Align = alRight
-      ImageIndex = 4
-      Images = MainDataModule.MainImageList
-      OnClick = btnFetchJobsClick
-      ExplicitLeft = 256
-      ExplicitTop = 8
-      ExplicitHeight = 22
+      ExplicitWidth = 130
     end
   end
 end

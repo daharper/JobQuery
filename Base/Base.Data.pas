@@ -482,7 +482,6 @@ end;
 procedure TDbSet<TService, T>.Insert(const aEntity: TService);
 var
   lSql: string;
-  lProperty: TRttiProperty;
   lArgs: TArray<Variant>;
   lValues: string;
   i: integer;
@@ -523,7 +522,6 @@ end;
 procedure TDbSet<TService, T>.Update(const aEntity: TService);
 var
   lSql: string;
-  lProperty: TRttiProperty;
   lArgs: TArray<Variant>;
   i: integer;
 begin

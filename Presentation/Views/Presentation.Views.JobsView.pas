@@ -33,8 +33,21 @@ type
     cxGrid1DBTableView1Url: TcxGridDBColumn;
     cxGrid1DBTableView1Description: TcxGridDBColumn;
     cxGrid1DBTableView1Applied: TcxGridDBColumn;
+
+    procedure cxGrid1DBTableView1AppliedGetDisplayText(
+        Sender:TcxCustomGridTableItem;
+        ARecord: TcxCustomGridRecord;
+        var AText: string);
+
+    procedure cxGrid1DBTableView1CellClick(
+        Sender: TcxCustomGridTableView;
+        ACellViewInfo: TcxGridTableDataCellViewInfo;
+        AButton: TMouseButton;
+        AShift: TShiftState;
+        var AHandled: Boolean);
+
   private
-    procedure OnJobEvent(const aEvent: TJobsRetrievedEvent);
+    procedure OnJobsRetrieved(const aEvent: TJobsRetrievedEvent);
   public
     procedure Initialize; override;
   end;
@@ -53,14 +66,48 @@ procedure TJobsView.Initialize;
 begin
   inherited;
 
-  //cxGrid1DBTableView1Title.Width := Width - 10 - cxGrid1DBTableView1Location.Width - cxGrid1DBTableView1MaxResults.Width;
   DataDataModule.JobsDataSource.DataSet.Open;
 
-  JobsEventBus.Subscribe<TJobsRetrievedEvent>(OnJobEvent);
+  JobsEventBus.Subscribe<TJobsRetrievedEvent>(OnJobsRetrieved);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TJobsView.OnJobEvent(const aEvent: TJobsRetrievedEvent);
+procedure TJobsView.cxGrid1DBTableView1AppliedGetDisplayText(Sender: TcxCustomGridTableItem; ARecord: TcxCustomGridRecord; var AText: string);
+var
+  V: Variant;
+begin
+  inherited;
+
+  V := ARecord.Values[Sender.Index];
+
+  AText := VarToStr(V);
+
+  if AText = '1' then
+    AText := 'Applied'
+  else if AText = '0' then
+    AText := 'None';
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TJobsView.cxGrid1DBTableView1CellClick(
+    Sender: TcxCustomGridTableView;
+    ACellViewInfo: TcxGridTableDataCellViewInfo;
+    AButton: TMouseButton;
+    AShift: TShiftState;
+    var AHandled: Boolean);
+begin
+  inherited;
+
+  var value := ACellViewInfo.GridRecord.Values[cxGrid1DBTableView1Id.Index];
+
+  if not VarIsNull(value) then
+    ShowMessage('Selected ID: ' + VarToStr(value));
+
+  AHandled := true;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TJobsView.OnJobsRetrieved(const aEvent: TJobsRetrievedEvent);
 begin
   DataDataModule.JobsDataSource.DataSet.Close;
   DataDataModule.JobsDataSource.DataSet.Open;

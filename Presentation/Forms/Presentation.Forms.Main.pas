@@ -12,13 +12,10 @@ type
     MainPanel: TPanel;
     MainSplitView: TSplitView;
     ViewButtons: TCategoryButtons;
-    ToolbarPanel: TPanel;
-    btnToggle: TSpeedButton;
-    btnFetchJobs: TSpeedButton;
-    procedure btnFetchJobsClick(Sender: TObject);
+    procedure CheckJobsOnClick(Sender: TObject);
     procedure btnToggleClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ShowApplicationsOnClick(Sender: TObject);
+    procedure ToggleMenuOnClick(Sender: TObject);
     procedure ShowJobsOnClick(Sender: TObject);
     procedure ShowSearchesOnClick(Sender: TObject);
   private
@@ -26,8 +23,6 @@ type
     fBusy: boolean;
     function GetBusy: boolean;
     procedure SetBusy(const aValue: boolean);
-
-
   public
     property Busy: boolean read GetBusy write SetBusy;
   end;
@@ -52,7 +47,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TMainForm.btnFetchJobsClick(Sender: TObject);
+procedure TMainForm.CheckJobsOnClick(Sender: TObject);
 const
   MSG_OK = 'There are %d new jobs.';
   MSG_FAIL = 'There are no new jobs.';
@@ -84,12 +79,6 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TMainForm.ShowApplicationsOnClick(Sender: TObject);
-begin
-  fController.Enter(vApplications);
-end;
-
-{----------------------------------------------------------------------------------------------------------------------}
 procedure TMainForm.ShowSearchesOnClick(Sender: TObject);
 begin
   fController.Enter(vSearches)
@@ -99,6 +88,12 @@ end;
 function TMainForm.GetBusy: boolean;
 begin
   Result := fBusy;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TMainForm.ToggleMenuOnClick(Sender: TObject);
+begin
+  MainSplitView.Opened := not MainSplitView.Opened;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

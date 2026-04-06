@@ -40,7 +40,8 @@ uses
   Infrastructure.Http.Adzuna in 'Infrastructure\Http\Infrastructure.Http.Adzuna.pas',
   App.Facades.Jobs in 'App\Facades\App.Facades.Jobs.pas',
   Domain.Search in 'Domain\Domain.Search.pas',
-  App.Common.Messaging in 'App\Common\App.Common.Messaging.pas';
+  App.Common.Messaging in 'App\Common\App.Common.Messaging.pas',
+  Presentation.Forms.Job in 'Presentation\Forms\Presentation.Forms.Job.pas' {JobForm};
 
 {$R *.res}
 
