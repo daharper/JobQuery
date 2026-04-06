@@ -16,7 +16,7 @@ type
     fSettings: IAdzunaSettings;
     fSearches: ISearchRepository;
   public
-    constructor Create(const appSettings: IAppSettings; const searchRepository: ISearchRepository);
+    constructor Create(const appSettings: IAppSettings; const aSearchRepository: ISearchRepository);
 
     function FetchLatestJobs: TArray<IJob>;
   end;
@@ -36,9 +36,10 @@ uses
 { TAdzunaJobFeedClient }
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TAdzunaJobFeedClient.Create(const appSettings: IAppSettings; const searchRepository: ISearchRepository);
+constructor TAdzunaJobFeedClient.Create(const appSettings: IAppSettings; const aSearchRepository: ISearchRepository);
 begin
   fSettings := appSettings.Adzuna;
+  fSearches := aSearchRepository
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -57,6 +58,7 @@ begin
     var url := Format(BASE_URL,
       [
         fSettings.Url,
+        fSettings.Id,
         fSettings.Key,
         search.Title,
         search.Location,

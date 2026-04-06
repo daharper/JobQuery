@@ -32,6 +32,11 @@ type
     procedure RegisterServices(const c: TContainer);
   end;
 
+  TUseCaseModule = class(TInterfacedObject, IContainerModule)
+  public
+    procedure RegisterServices(const c: TContainer);
+  end;
+
 implementation
 
 uses
@@ -44,8 +49,11 @@ uses
   Domain.Job,
   Domain.Search,
   App.Common.Settings,
+  App.Common.Contracts,
+  App.UseCases.FetchNewJobsUseCase,
   Infrastructure.Data.Repositories,
   Infrastructure.Data.Migrations,
+  Infrastructure.Http.Adzuna,
   Presentation.Host.Application;
 
 { TApplicationModule }
@@ -55,6 +63,7 @@ procedure TApplicationModule.RegisterServices(const c: TContainer);
 begin
   c.AddModule<TServiceModule>;
   c.AddModule<TDataServiceModule>;
+  c.AddModule<TUseCaseModule>;
 end;
 
 { TServiceModule }
@@ -65,6 +74,7 @@ begin
   c.Add<IApplication, TVclApplication>;
   c.Add<IMigrationRegistry, TMigrationRegistry>;
   c.Add<IFileService, TStandardFileService>;
+  c.Add<IJobFeedClient, TAdzunaJobFeedClient>;
   c.Add<IAppSettings, TAppSettings>;
 
   c.AddAlias<ISettings, IAppSettings>;
@@ -77,6 +87,14 @@ procedure TDataServiceModule.RegisterServices(const c: TContainer);
 begin
   c.Add<IJobRepository, TJobRepository>;
   c.Add<ISearchRepository, TSearchRepository>;
+end;
+
+{ TUseCaseModule }
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TUseCaseModule.RegisterServices(const c: TContainer);
+begin
+  c.Add<IFetchNewJobsUseCase, TFetchNewJobsUseCase>;
 end;
 
 end.

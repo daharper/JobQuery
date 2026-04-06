@@ -418,6 +418,7 @@ object MainForm: TMainForm
       Align = alRight
       ImageIndex = 4
       Images = MainDataModule.MainImageList
+      OnClick = btnFetchJobsClick
       ExplicitLeft = 256
       ExplicitTop = 8
       ExplicitHeight = 22

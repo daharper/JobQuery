@@ -7,13 +7,13 @@ uses
   App.UseCases.FetchNewJobsUseCase;
 
 type
-  TJobsFascade = class
+  TJobsFacade = class
   private
   public
     /// <summary>
     ///  Attempts to fetch the latests jobs, returns true if there are new jobs.
     /// </summary>
-    class function FetchLatestJobs: boolean;
+    class function FetchLatestJobs: integer;
   end;
 
 implementation
@@ -24,13 +24,13 @@ uses
 { TJobsFascade }
 
 {----------------------------------------------------------------------------------------------------------------------}
-class function TJobsFascade.FetchLatestJobs: boolean;
+class function TJobsFacade.FetchLatestJobs: integer;
 begin
   var uc := Container.Resolve<IFetchNewJobsUseCase>;
 
   uc.Execute;
 
-  Result := uc.UpdatedCount > 0;
+  Result := uc.UpdatedCount;
 end;
 
 end.

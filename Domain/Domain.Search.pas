@@ -24,6 +24,7 @@ type
     property MaxResults: integer read GetMaxResults write SetMaxResults;
   end;
 
+  [TTable('Searches')]
   TSearch = class(TEntity, ISearch)
   private
     fMax: integer;

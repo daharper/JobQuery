@@ -15,6 +15,7 @@ type
     ToolbarPanel: TPanel;
     btnToggle: TSpeedButton;
     btnFetchJobs: TSpeedButton;
+    procedure btnFetchJobsClick(Sender: TObject);
     procedure btnToggleClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ShowApplicationsOnClick(Sender: TObject);
@@ -22,8 +23,13 @@ type
     procedure ShowSearchesOnClick(Sender: TObject);
   private
     fController: IViewController;
+    fBusy: boolean;
+    function GetBusy: boolean;
+    procedure SetBusy(const aValue: boolean);
+
+
   public
-    { Public declarations }
+    property Busy: boolean read GetBusy write SetBusy;
   end;
 
 var
@@ -34,7 +40,8 @@ implementation
 {$R *.dfm}
 
 uses
-  Base.Container;
+  Base.Container,
+  App.Facades.Jobs;
 
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TMainForm.FormShow(Sender: TObject);
@@ -42,6 +49,26 @@ begin
   fController := TViewController.Create(MainPanel);
 
   fController.Enter(vJobs);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TMainForm.btnFetchJobsClick(Sender: TObject);
+const
+  MSG_OK = 'There are %d new jobs.';
+  MSG_FAIL = 'There are no new jobs.';
+begin
+  Busy := true;
+
+  try
+    var count := TJobsFacade.FetchLatestJobs;
+
+    if count > 0 then
+      ShowMessage(Format(MSG_OK, [count]))
+    else
+      ShowMessage(MSG_FAIL);
+  finally
+    Busy := false;
+  end;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -66,6 +93,22 @@ end;
 procedure TMainForm.ShowSearchesOnClick(Sender: TObject);
 begin
   fController.Enter(vSearches)
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+function TMainForm.GetBusy: boolean;
+begin
+  Result := fBusy;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TMainForm.SetBusy(const aValue: boolean);
+begin
+  if aValue = fBusy then exit;
+
+  fBusy := aValue;
+
+  Screen.Cursor := if fBusy then crHourGlass else crDefault;
 end;
 
 end.
