@@ -17,9 +17,9 @@ type
     function GetContractTime: string;
     function GetContractType: string;
     function GetCreatedAt: TDateTime;
-    function GetLatitude: string;
+    function GetLatitude: double;
+    function GetLongitude: double;
     function GetLocation: string;
-    function GetLongitude: string;
     function GetMaxSalary: integer;
     function GetMinSalary: integer;
     function GetSourceRef: string;
@@ -36,9 +36,9 @@ type
     procedure SetContractTime(const aValue: string);
     procedure SetContractType(const aValue: string);
     procedure SetCreatedAt(const aValue: TDateTime);
-    procedure SetLatitude(const aValue: string);
+    procedure SetLatitude(const aValue: double);
+    procedure SetLongitude(const aValue: double);
     procedure SetLocation(const aValue: string);
-    procedure SetLongitude(const aValue: string);
     procedure SetMaxSalary(const aValue: integer);
     procedure SetMinSalary(const aValue: integer);
     procedure SetSourceRef(const aValue: string);
@@ -61,8 +61,8 @@ type
     property ContractTime:string read GetContractTime write SetContractTime;
     property Area:string read GetArea write SetArea;
     property Location:string read GetLocation write SetLocation;
-    property Longitude:string read GetLongitude write SetLongitude;
-    property Latitude:string read GetLatitude write SetLatitude;
+    property Longitude:double read GetLongitude write SetLongitude;
+    property Latitude:double read GetLatitude write SetLatitude;
     property Title:string read GetTitle write SetTitle;
     property Url:string read GetUrl write SetUrl;
     property Description:string read GetDescription write SetDescription;
@@ -83,8 +83,8 @@ type
     fContractTime:    string;    // contract_time (full_time)
     fArea:            string;    // location -> display_name (Wickford, Essex)
     fLocation:        string;    // location -> area         ([UK, Eastern England, Essex, Wickford])
-    fLongitude:       string;    // longitude
-    fLatitude:        string;    // latitude
+    fLongitude:       double;    // longitude
+    fLatitude:        double;    // latitude
     fTitle:           string;    // title
     fUrl:             string;    // redirect_url
     fDescription:     string;
@@ -97,9 +97,9 @@ type
     function GetContractTime: string;
     function GetContractType: string;
     function GetCreatedAt: TDateTime;
-    function GetLatitude: string;
+    function GetLatitude: double;
+    function GetLongitude: double;
     function GetLocation: string;
-    function GetLongitude: string;
     function GetMaxSalary: integer;
     function GetMinSalary: integer;
     function GetSourceRef: string;
@@ -116,9 +116,9 @@ type
     procedure SetContractTime(const aValue: string);
     procedure SetContractType(const aValue: string);
     procedure SetCreatedAt(const aValue: TDateTime);
-    procedure SetLatitude(const aValue: string);
+    procedure SetLatitude(const aValue: double);
+    procedure SetLongitude(const aValue: double);
     procedure SetLocation(const aValue: string);
-    procedure SetLongitude(const aValue: string);
     procedure SetMaxSalary(const aValue: integer);
     procedure SetMinSalary(const aValue: integer);
     procedure SetSourceRef(const aValue: string);
@@ -141,8 +141,8 @@ type
     property ContractTime:string read GetContractTime write SetContractTime;
     property Area:string read GetArea write SetArea;
     property Location:string read GetLocation write SetLocation;
-    property Longitude:string read GetLongitude write SetLongitude;
-    property Latitude:string read GetLatitude write SetLatitude;
+    property Longitude:double read GetLongitude write SetLongitude;
+    property Latitude:double read GetLatitude write SetLatitude;
     property Title:string read GetTitle write SetTitle;
     property Url:string read GetUrl write SetUrl;
     property Description:string read GetDescription write SetDescription;
@@ -206,7 +206,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TJob.GetLatitude: string;
+function TJob.GetLatitude: double;
 begin
   Result := fLatitude;
 end;
@@ -218,7 +218,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-function TJob.GetLongitude: string;
+function TJob.GetLongitude: double;
 begin
   Result := fLongitude;
 end;
@@ -314,7 +314,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TJob.SetLatitude(const aValue: string);
+procedure TJob.SetLatitude(const aValue: double);
 begin
   fLatitude := aValue;
 end;
@@ -326,7 +326,7 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TJob.SetLongitude(const aValue: string);
+procedure TJob.SetLongitude(const aValue: double);
 begin
   fLongitude := aValue;
 end;

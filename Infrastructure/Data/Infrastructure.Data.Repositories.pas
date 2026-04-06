@@ -8,10 +8,16 @@ uses
   Base.Integrity,
   Base.Data,
   Base.Sqlite,
-  Domain.Job;
+  Domain.Job,
+  Domain.Search;
 
 type
   TJobRepository = class(TDbSet<IJob, TJob>, IJobRepository)
+  public
+    constructor Create(const aDb: IDbSessionManager);
+  end;
+
+  TSearchRepository = class(TDbSet<ISearch, TSearch>, ISearchRepository)
   public
     constructor Create(const aDb: IDbSessionManager);
   end;
@@ -22,6 +28,14 @@ implementation
 
 {----------------------------------------------------------------------------------------------------------------------}
 constructor TJobRepository.Create(const aDb: IDbSessionManager);
+begin
+  inherited Create(aDb);
+end;
+
+{ TSearchRepository }
+
+{----------------------------------------------------------------------------------------------------------------------}
+constructor TSearchRepository.Create(const aDb: IDbSessionManager);
 begin
   inherited Create(aDb);
 end;

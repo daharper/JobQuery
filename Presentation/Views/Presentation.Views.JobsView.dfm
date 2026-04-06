@@ -1,5 +1,5 @@
 inherited JobsView: TJobsView
-  object JobsGrid: TcxGrid
+  object cxGrid1: TcxGrid
     Left = 0
     Top = 0
     Width = 958
@@ -8,98 +8,73 @@ inherited JobsView: TJobsView
     TabOrder = 0
     LookAndFeel.NativeStyle = False
     LookAndFeel.SkinName = 'Office2019Black'
-    object Jobs: TcxGridDBTableView
-      FindPanel.DisplayMode = fpdmAlways
-      FindPanel.FocusViewOnApplyFilter = True
-      DataController.DataModeController.GridMode = True
+    ExplicitLeft = 216
+    ExplicitTop = 296
+    ExplicitWidth = 250
+    ExplicitHeight = 200
+    object cxGrid1DBTableView1: TcxGridDBTableView
       DataController.DataSource = DataDataModule.JobsDataSource
-      OptionsData.Deleting = False
-      OptionsData.Editing = False
-      OptionsData.Inserting = False
-      Styles.UseOddEvenStyles = bFalse
-      object JobsId: TcxGridDBColumn
+      DataController.KeyFieldNames = 'Id'
+      object cxGrid1DBTableView1Id: TcxGridDBColumn
         DataBinding.FieldName = 'Id'
-        Visible = False
       end
-      object JobsSource: TcxGridDBColumn
+      object cxGrid1DBTableView1Source: TcxGridDBColumn
         DataBinding.FieldName = 'Source'
-        Visible = False
       end
-      object JobsApplied: TcxGridDBColumn
-        DataBinding.FieldName = 'Applied'
-        Visible = False
-        GroupIndex = 0
-        Width = 55
-      end
-      object JobsCreatedAt: TcxGridDBColumn
-        Caption = 'Date'
+      object cxGrid1DBTableView1CreatedAt: TcxGridDBColumn
         DataBinding.FieldName = 'CreatedAt'
       end
-      object JobsTitle: TcxGridDBColumn
-        DataBinding.FieldName = 'Title'
-        Width = 250
-      end
-      object JobsSourceRef: TcxGridDBColumn
+      object cxGrid1DBTableView1SourceRef: TcxGridDBColumn
         DataBinding.FieldName = 'SourceRef'
-        Visible = False
       end
-      object JobsCategory: TcxGridDBColumn
+      object cxGrid1DBTableView1Category: TcxGridDBColumn
         DataBinding.FieldName = 'Category'
-        Visible = False
       end
-      object JobsMinSalary: TcxGridDBColumn
-        Caption = 'Minimum'
+      object cxGrid1DBTableView1MinSalary: TcxGridDBColumn
         DataBinding.FieldName = 'MinSalary'
-        Width = 70
       end
-      object JobsMaxSalary: TcxGridDBColumn
-        Caption = 'Maximum'
+      object cxGrid1DBTableView1MaxSalary: TcxGridDBColumn
         DataBinding.FieldName = 'MaxSalary'
-        Width = 70
       end
-      object JobsSalaryPredicted: TcxGridDBColumn
+      object cxGrid1DBTableView1SalaryPredicted: TcxGridDBColumn
         DataBinding.FieldName = 'SalaryPredicted'
-        Visible = False
       end
-      object JobsCompany: TcxGridDBColumn
+      object cxGrid1DBTableView1Company: TcxGridDBColumn
         DataBinding.FieldName = 'Company'
-        Width = 200
       end
-      object JobsContractType: TcxGridDBColumn
+      object cxGrid1DBTableView1ContractType: TcxGridDBColumn
         DataBinding.FieldName = 'ContractType'
-        Visible = False
       end
-      object JobsContractTime: TcxGridDBColumn
+      object cxGrid1DBTableView1ContractTime: TcxGridDBColumn
         DataBinding.FieldName = 'ContractTime'
-        Visible = False
       end
-      object JobsArea: TcxGridDBColumn
+      object cxGrid1DBTableView1Area: TcxGridDBColumn
         DataBinding.FieldName = 'Area'
-        Visible = False
       end
-      object JobsLocation: TcxGridDBColumn
+      object cxGrid1DBTableView1Location: TcxGridDBColumn
         DataBinding.FieldName = 'Location'
-        Width = 200
       end
-      object JobsLongitude: TcxGridDBColumn
+      object cxGrid1DBTableView1Longitude: TcxGridDBColumn
         DataBinding.FieldName = 'Longitude'
-        Visible = False
       end
-      object JobsLatitude: TcxGridDBColumn
+      object cxGrid1DBTableView1Latitude: TcxGridDBColumn
         DataBinding.FieldName = 'Latitude'
-        Visible = False
       end
-      object JobsUrl: TcxGridDBColumn
+      object cxGrid1DBTableView1Title: TcxGridDBColumn
+        DataBinding.FieldName = 'Title'
+      end
+      object cxGrid1DBTableView1Url: TcxGridDBColumn
         DataBinding.FieldName = 'Url'
-        Visible = False
       end
-      object JobsDescription: TcxGridDBColumn
+      object cxGrid1DBTableView1Description: TcxGridDBColumn
         DataBinding.FieldName = 'Description'
-        Visible = False
+      end
+      object cxGrid1DBTableView1Applied: TcxGridDBColumn
+        DataBinding.FieldName = 'Applied'
       end
     end
-    object Level: TcxGridLevel
-      GridView = Jobs
+    object cxGrid1Level1: TcxGridLevel
+      GridView = cxGrid1DBTableView1
     end
   end
 end

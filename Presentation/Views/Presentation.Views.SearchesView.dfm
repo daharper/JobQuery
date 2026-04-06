@@ -25,10 +25,17 @@ inherited SearchesView: TSearchesView
         DataBinding.FieldName = 'Id'
         Visible = False
       end
+      object cxGrid1DBTableView1Location: TcxGridDBColumn
+        DataBinding.FieldName = 'Location'
+        Width = 200
+      end
+      object cxGrid1DBTableView1MaxResults: TcxGridDBColumn
+        Caption = 'Max Results'
+        DataBinding.FieldName = 'MaxResults'
+        Width = 80
+      end
       object cxGrid1DBTableView1Title: TcxGridDBColumn
         DataBinding.FieldName = 'Title'
-        MinWidth = 200
-        Width = 500
       end
     end
     object cxGrid1Level1: TcxGridLevel

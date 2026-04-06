@@ -11,32 +11,32 @@ uses
 
 type
   TJobsView = class(TView)
-    JobsGrid: TcxGrid;
-    Jobs: TcxGridDBTableView;
-    Level: TcxGridLevel;
-    JobsId: TcxGridDBColumn;
-    JobsSource: TcxGridDBColumn;
-    JobsCreatedAt: TcxGridDBColumn;
-    JobsSourceRef: TcxGridDBColumn;
-    JobsCategory: TcxGridDBColumn;
-    JobsMinSalary: TcxGridDBColumn;
-    JobsMaxSalary: TcxGridDBColumn;
-    JobsSalaryPredicted: TcxGridDBColumn;
-    JobsCompany: TcxGridDBColumn;
-    JobsContractType: TcxGridDBColumn;
-    JobsContractTime: TcxGridDBColumn;
-    JobsArea: TcxGridDBColumn;
-    JobsLocation: TcxGridDBColumn;
-    JobsLongitude: TcxGridDBColumn;
-    JobsLatitude: TcxGridDBColumn;
-    JobsTitle: TcxGridDBColumn;
-    JobsUrl: TcxGridDBColumn;
-    JobsDescription: TcxGridDBColumn;
-    JobsApplied: TcxGridDBColumn;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    cxGrid1DBTableView1Id: TcxGridDBColumn;
+    cxGrid1DBTableView1Source: TcxGridDBColumn;
+    cxGrid1DBTableView1CreatedAt: TcxGridDBColumn;
+    cxGrid1DBTableView1SourceRef: TcxGridDBColumn;
+    cxGrid1DBTableView1Category: TcxGridDBColumn;
+    cxGrid1DBTableView1MinSalary: TcxGridDBColumn;
+    cxGrid1DBTableView1MaxSalary: TcxGridDBColumn;
+    cxGrid1DBTableView1SalaryPredicted: TcxGridDBColumn;
+    cxGrid1DBTableView1Company: TcxGridDBColumn;
+    cxGrid1DBTableView1ContractType: TcxGridDBColumn;
+    cxGrid1DBTableView1ContractTime: TcxGridDBColumn;
+    cxGrid1DBTableView1Area: TcxGridDBColumn;
+    cxGrid1DBTableView1Location: TcxGridDBColumn;
+    cxGrid1DBTableView1Longitude: TcxGridDBColumn;
+    cxGrid1DBTableView1Latitude: TcxGridDBColumn;
+    cxGrid1DBTableView1Title: TcxGridDBColumn;
+    cxGrid1DBTableView1Url: TcxGridDBColumn;
+    cxGrid1DBTableView1Description: TcxGridDBColumn;
+    cxGrid1DBTableView1Applied: TcxGridDBColumn;
   private
     { Private declarations }
   public
-    { Public declarations }
+    procedure Initialize; override;
   end;
 
 var
@@ -46,4 +46,13 @@ implementation
 
 {$R *.dfm}
 
+{ TJobsView }
+
+procedure TJobsView.Initialize;
+begin
+  inherited;
+
+  //cxGrid1DBTableView1Title.Width := Width - 10 - cxGrid1DBTableView1Location.Width - cxGrid1DBTableView1MaxResults.Width;
+  DataDataModule.JobsDataSource.DataSet.Open;
+end;
 end.

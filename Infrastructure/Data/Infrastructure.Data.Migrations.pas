@@ -52,8 +52,8 @@ const
             ContractType      TEXT    NOT NULL DEFAULT '',
             ContractTime      TEXT    NOT NULL DEFAULT '',
             Area              TEXT    NOT NULL DEFAULT '',
-            Location          TEXT    NOT NULL DEFAULT '',
-            Longitude         TEXT    NOT NULL DEFAULT '',
+            Location          REAL    NOT NULL DEFAULT '',
+            Longitude         REAL    NOT NULL DEFAULT '',
             Latitude          TEXT    NOT NULL DEFAULT '',
             Title             TEXT    NOT NULL DEFAULT '',
             Url               TEXT    NOT NULL DEFAULT '',
@@ -63,7 +63,9 @@ const
 
         CREATE TABLE Searches (
             Id                INTEGER PRIMARY KEY,
-            Title             TEXT    NOT NULL DEFAULT ''
+            Title             TEXT    NOT NULL DEFAULT '',
+            Location          TEXT    NOT NULL DEFAULT 'UK',
+            MaxResults        INTEGER NOT NULL DEFAULT 10
         );
         ''';
 begin
@@ -76,9 +78,9 @@ end;
 procedure TSeedDatabaseMigration.Execute(const aDb: IDbSessionManager);
 const
   SQL = '''
-        INSERT INTO Searches (Id, Title) VALUES
-        (1, 'Delphi Developer'),
-        (2, 'C# Developer');
+        INSERT INTO Searches (Id, Title, Location, MaxResults) VALUES
+        (1, 'Delphi Developer', 'UK', 25),
+        (2, 'C# Developer', 'UK', 50);
         ''';
 begin
   inherited;

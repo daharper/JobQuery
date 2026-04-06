@@ -42,6 +42,7 @@ uses
   Base.Settings,
   Base.Reflection,
   Domain.Job,
+  Domain.Search,
   App.Common.Settings,
   Infrastructure.Data.Repositories,
   Infrastructure.Data.Migrations,
@@ -75,6 +76,7 @@ end;
 procedure TDataServiceModule.RegisterServices(const c: TContainer);
 begin
   c.Add<IJobRepository, TJobRepository>;
+  c.Add<ISearchRepository, TSearchRepository>;
 end;
 
 end.

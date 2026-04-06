@@ -15,14 +15,14 @@ type
 
   TFetchNewJobsUseCase = class(TTransient, IFetchNewJobsUseCase)
   private
-    fFeedClient: IJobFeedClient;
-    fRepository: IJobRepository;
+    fClient: IJobFeedClient;
+    fJobs: IJobRepository;
     fUpdatedCount: integer;
   public
     property UpdatedCount: integer read fUpdatedCount;
 
     procedure Execute;
-    constructor Create(const aFeedClient: IJobFeedClient; const aRepository: IJobRepository);
+    constructor Create(const aFeedClient: IJobFeedClient; const aJobRepository: IJobRepository);
   end;
 
 implementation
@@ -30,9 +30,10 @@ implementation
 { TFetchNewJobsUseCase }
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TFetchNewJobsUseCase.Create(const aFeedClient: IJobFeedClient; const aRepository: IJobRepository);
+constructor TFetchNewJobsUseCase.Create(const aFeedClient: IJobFeedClient; const aJobRepository: IJobRepository);
 begin
-  //
+  fClient := aFeedClient;
+  fJobs   := aJobRepository;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
