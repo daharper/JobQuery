@@ -40,7 +40,9 @@ uses
   Presentation.Views.SearchesView in 'Presentation\Views\Presentation.Views.SearchesView.pas' {SearchesView: TFrame},
   App.Core.Contracts in 'App\Core\App.Core.Contracts.pas',
   App.UseCases.FetchNewJobsUseCase in 'App\UseCases\App.UseCases.FetchNewJobsUseCase.pas',
-  Domain.Jobs.JobRepository in 'Domain\Domain.Jobs\Domain.Jobs.JobRepository.pas';
+  Domain.Jobs.JobRepository in 'Domain\Domain.Jobs\Domain.Jobs.JobRepository.pas',
+  Infrastructure.Http.Adzuna in 'Infrastructure\Http\Infrastructure.Http.Adzuna.pas',
+  App.Facades.Jobs in 'App\Facades\App.Facades.Jobs.pas';
 
 {$R *.res}
 

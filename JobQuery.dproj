@@ -223,6 +223,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCCReference Include="App\Core\App.Core.Contracts.pas"/>
         <DCCReference Include="App\UseCases\App.UseCases.FetchNewJobsUseCase.pas"/>
         <DCCReference Include="Domain\Domain.Jobs\Domain.Jobs.JobRepository.pas"/>
+        <DCCReference Include="Infrastructure\Http\Infrastructure.Http.Adzuna.pas"/>
+        <DCCReference Include="App\Facades\App.Facades.Jobs.pas"/>
         <None Include="Resources\Settings.xml"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

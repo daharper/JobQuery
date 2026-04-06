@@ -8,7 +8,8 @@ uses
   Base.Integrity,
   Base.Data,
   Base.Sqlite,
-  Domain.Jobs.Job;
+  Domain.Jobs.Job,
+  Domain.Jobs.JobRepository;
 
 type
   TJobRepository = class(TDbSet<IJob, TJob>, IJobRepository)
