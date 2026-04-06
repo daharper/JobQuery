@@ -3,7 +3,7 @@
 
 A simple job search application.
 
-The purpose of this application is solely to drive the initial development of architectural abstractions in **Project Galahad**. It makes job search requests against the Adzuna Rest API, and stores the details in a SQLite database. Data grids interact with this data. It has minimum functionality, allowing you to not which jobs you applied for. 
+The purpose of this application is solely to drive the initial development of architectural abstractions in **Project Galahad**. It makes job search requests against the Adzuna Rest API, and stores the details in a SQLite database. Data grids interact with this data. It has minimum functionality. 
 
 As mentioned, the focus is not the appliction, but architectural abstractions. The application is minimal.
 
