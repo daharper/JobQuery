@@ -43,18 +43,6 @@ uses
 {$R *.res}
 
 begin
-{ Delphi looks for the following code to enable the "Appearance" and "Forms" project settings in Options.
-  Uncomment when changing appearance, remove when appearance is finalized.}
-
-//  Application.Initialize;
-//  Application.MainFormOnTaskbar := True;
-//  Application.Title := 'Job Query';
-//  TStyleManager.TrySetStyle('Windows Modern Dark');
-//  Application.CreateForm(TMainDataModule, MainDataModule);
-//  Application.CreateForm(TMainForm, MainForm);
-//  Application.Run;
-
-
   ReportMemoryLeaksOnShutdown := true;
 
   var app := ApplicationBuilder
