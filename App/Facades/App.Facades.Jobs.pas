@@ -18,14 +18,19 @@ type
 
 implementation
 
+uses
+  Base.Container;
+
 { TJobsFascade }
 
 {----------------------------------------------------------------------------------------------------------------------}
 class function TJobsFascade.FetchLatestJobs: boolean;
 begin
-  // var uc := Container.Resolve<Ifce>;
-  // us.Execute;
-  // Result := uc.UpdatedCount > 0;
+  var uc := Container.Resolve<IFetchNewJobsUseCase>;
+
+  uc.Execute;
+
+  Result := uc.UpdatedCount > 0;
 end;
 
 end.

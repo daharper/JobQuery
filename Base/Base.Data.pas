@@ -303,6 +303,8 @@ type
 
     function GetAll: TArray<TService>;
     function GetBy(const aId: integer): TOption<TService>;
+
+    procedure Save(const aEntity: TService);
   end;
 
 {$IFDEF MSWINDOWS}
@@ -322,6 +324,9 @@ type
     function ExecQuery(const aSql: string):TArray<TService>; overload;
     function ExecQuery(const aQuery: TFDQuery):TArray<TService>; overload;
 
+    procedure Insert(const aEntity: TService);
+    procedure Update(const aEntity: TService);
+
     class var fName: string;
     class var fPropertyOrder: TList<string>;
     class var fProperties: TDictionary<string, TRttiProperty>;
@@ -332,6 +337,8 @@ type
 
     function GetAll: TArray<TService>;
     function GetBy(const aId: integer): TOption<TService>;
+
+    procedure Save(const aEntity: TService);
 
     constructor Create(const aDb: IDbSessionManager);
     destructor Destroy; override;
@@ -469,6 +476,94 @@ begin
 
   if Assigned(entities) then
     Result.SetSome(entities[0]);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TDbSet<TService, T>.Insert(const aEntity: TService);
+var
+  lSql: string;
+  lProperty: TRttiProperty;
+  lArgs: TArray<Variant>;
+  lValues: string;
+  i: integer;
+  lId: integer;
+begin
+  i := 0;
+
+  SetLength(lArgs, fProperties.Count - 1);
+
+  lSql := 'insert into ' + TableName + '(';
+
+  for var nameProperty in fProperties do
+  begin
+    var name := nameProperty.Key;
+    var prop := nameProperty.Value;
+    var col  := fPropToColMap[name];
+
+    if CompareText('Id', name) = 0 then continue;
+
+    lSql     := lSql + col + ', ';
+    lValues  := lValues + ':' + col + ', ';
+    lArgs[i] := prop.GetValue(TObject(aEntity as T)).AsVariant;
+
+    Inc(i);
+  end;
+
+  SetLength(lSql, Length(lSql) - 2);
+  SetLength(lValues, Length(lValues) - 2);
+
+  lSql := lSql + ') values(' + lValues + ') returning id';
+
+  lId := Connection.ExecSQLScalar(lsql, lArgs);
+
+  fProperties['Id'].SetValue(TObject(aEntity as T), lId);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TDbSet<TService, T>.Update(const aEntity: TService);
+var
+  lSql: string;
+  lProperty: TRttiProperty;
+  lArgs: TArray<Variant>;
+  i: integer;
+begin
+  i := 0;
+
+  SetLength(lArgs, fProperties.Count);
+
+  lSql := 'update ' + TableName + ' set ';
+
+  for var nameProperty in fProperties do
+  begin
+    var name := nameProperty.Key;
+    var prop := nameProperty.Value;
+    var col  := fPropToColMap[name];
+
+    if CompareText('Id', name) = 0 then continue;
+
+    lSql := lSql + col + '=:' + col + ', ';
+
+    lArgs[i] := prop.GetValue(TObject(aEntity as T)).AsVariant;
+
+    Inc(i);
+  end;
+
+  SetLength(lSql, Length(lSql) - 2);
+
+  lSql := lSql + ' where id=:Id';
+
+  lArgs[i] := fProperties['Id'].GetValue(TObject(aEntity as T)).AsVariant;
+
+  Connection.ExecSQL(lsql, lArgs);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TDbSet<TService, T>.Save(const aEntity: TService);
+begin
+  if aEntity.IsNew then
+    Insert(aEntity)
+  else
+    Update(aEntity);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

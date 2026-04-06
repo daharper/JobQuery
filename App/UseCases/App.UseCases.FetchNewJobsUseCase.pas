@@ -11,15 +11,17 @@ type
   IFetchNewJobsUseCase = interface
     ['{0757663B-7DA8-47F7-8E50-C055F61F55D5}']
     procedure Execute;
+
+    function UpdatedCount: integer;
   end;
 
   TFetchNewJobsUseCase = class(TTransient, IFetchNewJobsUseCase)
   private
     fClient: IJobFeedClient;
-    fJobs: IJobRepository;
+    fRepository: IJobRepository;
     fUpdatedCount: integer;
   public
-    property UpdatedCount: integer read fUpdatedCount;
+    function UpdatedCount: integer;
 
     procedure Execute;
     constructor Create(const aFeedClient: IJobFeedClient; const aJobRepository: IJobRepository);
@@ -30,16 +32,35 @@ implementation
 { TFetchNewJobsUseCase }
 
 {----------------------------------------------------------------------------------------------------------------------}
-constructor TFetchNewJobsUseCase.Create(const aFeedClient: IJobFeedClient; const aJobRepository: IJobRepository);
+procedure TFetchNewJobsUseCase.Execute;
 begin
-  fClient := aFeedClient;
-  fJobs   := aJobRepository;
+  fUpdatedCount := 0;
+
+  var jobs := fClient.FetchLatestJobs;
+
+  if jobs = nil then exit;
+
+  for var job in jobs do
+  begin
+    if fRepository.HasJob(job.Source, job.SourceRef) then continue;
+
+    fRepository.Save(job);
+
+    Inc(fUpdatedCount);
+  end;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TFetchNewJobsUseCase.Execute;
+function TFetchNewJobsUseCase.UpdatedCount: integer;
 begin
-  //
+  Result := fUpdatedCount;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+constructor TFetchNewJobsUseCase.Create(const aFeedClient: IJobFeedClient; const aJobRepository: IJobRepository);
+begin
+  fClient := aFeedClient;
+  fRepository := aJobRepository;
 end;
 
 end.

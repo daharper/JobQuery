@@ -151,6 +151,8 @@ type
 
   IJobRepository = interface(IDbSet<IJob, TJob>)
     ['{9C132F99-B4FF-4C86-83B8-26268A26490F}']
+
+    function HasJob(const aSource, aSourceRef: string): boolean;
   end;
 
 implementation
