@@ -39,7 +39,8 @@ uses
   App.UseCases.FetchNewJobsUseCase in 'App\UseCases\App.UseCases.FetchNewJobsUseCase.pas',
   Infrastructure.Http.Adzuna in 'Infrastructure\Http\Infrastructure.Http.Adzuna.pas',
   App.Facades.Jobs in 'App\Facades\App.Facades.Jobs.pas',
-  Domain.Search in 'Domain\Domain.Search.pas';
+  Domain.Search in 'Domain\Domain.Search.pas',
+  App.Common.Messaging in 'App\Common\App.Common.Messaging.pas';
 
 {$R *.res}
 

@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels, dxSkinOffice2019Black,
   cxLookAndFeelPainters, cxStyles, Data.DB, cxDBData, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView,
   cxGridTableView, cxGridDBTableView, cxGrid, Presentation.Modules.Data, cxCustomData, cxFilter, cxData, cxDataStorage,
-  cxEdit, cxNavigator, dxDateRanges, dxScrollbarAnnotations, Presentation.Views.View;
+  cxEdit, cxNavigator, dxDateRanges, dxScrollbarAnnotations, Presentation.Views.View, App.Common.Messaging;
 
 type
   TJobsView = class(TView)
@@ -34,7 +34,7 @@ type
     cxGrid1DBTableView1Description: TcxGridDBColumn;
     cxGrid1DBTableView1Applied: TcxGridDBColumn;
   private
-    { Private declarations }
+    procedure OnJobEvent(const aEvent: TJobsRetrievedEvent);
   public
     procedure Initialize; override;
   end;
@@ -48,11 +48,22 @@ implementation
 
 { TJobsView }
 
+{----------------------------------------------------------------------------------------------------------------------}
 procedure TJobsView.Initialize;
 begin
   inherited;
 
   //cxGrid1DBTableView1Title.Width := Width - 10 - cxGrid1DBTableView1Location.Width - cxGrid1DBTableView1MaxResults.Width;
   DataDataModule.JobsDataSource.DataSet.Open;
+
+  JobsEventBus.Subscribe<TJobsRetrievedEvent>(OnJobEvent);
 end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TJobsView.OnJobEvent(const aEvent: TJobsRetrievedEvent);
+begin
+  DataDataModule.JobsDataSource.DataSet.Close;
+  DataDataModule.JobsDataSource.DataSet.Open;
+end;
+
 end.

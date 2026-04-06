@@ -29,6 +29,9 @@ type
 
 implementation
 
+uses
+  App.Common.Messaging;
+
 { TFetchNewJobsUseCase }
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -47,6 +50,13 @@ begin
       Inc(fUpdatedCount);
     end;
 
+  if fUpdatedCount > 0 then
+  begin
+    var e := TJobsRetrievedEvent.Create(fUpdatedCount);
+    var group := TJobEvent.Create;
+
+    JobsEventBus.Publish<TJobsRetrievedEvent, TJobEvent>(e, group);
+  end;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

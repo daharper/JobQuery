@@ -124,9 +124,9 @@ type
   /// </summary>
   TBaseEvent = class
   private
-    fOccuredAt: TDateTime;
+    fOccurredAt: TDateTime;
   public
-    property OccurredAt: TDateTime read fOccuredAt write fOccuredAt;
+    property OccurredAt: TDateTime read fOccurredAt;
 
     constructor Create;
   end;
@@ -503,7 +503,7 @@ constructor TBaseEvent.Create;
 begin
   inherited Create;
 
-  OccurredAt := TConvert.UtcNow;
+  fOccurredAt := TConvert.UtcNow;
 end;
 
 { TPublishException }
