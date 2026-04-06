@@ -22,6 +22,6 @@ After registration, configure the Settings.Xml section accordingly, here's an ex
   </Adzuna>
 ```
 
-Note: If you build the project, the post build event will copy the Settings.Xml file to the debug folder, overriding the existing one. So that's the Xml file to update. However, if you are just running the application, then just edit the Settings.Xml file in the debug folder.
+Note: If you build the project, the post build event will copy the project's Settings.Xml file to the debug folder, overriding the existing one. So that's the Xml file to update. However, if you are just running the application, then just edit the Settings.Xml file in the debug folder.
 
 Hopefully, this will be finished shortly, and I'll drop a Blog post with details.
