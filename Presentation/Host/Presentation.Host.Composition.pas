@@ -75,7 +75,7 @@ begin
   c.Add<IMigrationRegistry, TMigrationRegistry>;
   c.Add<IFileService, TStandardFileService>;
   c.Add<IJobFeedClient, TAdzunaJobFeedClient>;
-  c.Add<IAppSettings, TAppSettings>;
+  c.Add<IAppSettings, TAppSettings>(Singleton);
 
   c.AddAlias<ISettings, IAppSettings>;
 end;
