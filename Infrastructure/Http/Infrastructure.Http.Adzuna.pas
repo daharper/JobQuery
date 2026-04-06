@@ -70,7 +70,7 @@ begin
 
     Ensure.IsEqual(200, response.StatusCode, Format(REQ_ERR, [url, sLineBreak, content]));
 
-    var jsonObject := TJSONObject.ParseJSONValue(content);
+    var jsonObject := scope.Owns(TJSONObject.ParseJSONValue(content));
 
     Ensure.IsTrue(jsonObject is TJSONObject, 'Unexpected JSON root.');
 

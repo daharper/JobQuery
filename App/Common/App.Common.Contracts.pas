@@ -3,6 +3,7 @@ unit App.Common.Contracts;
 interface
 
 uses
+  Base.Messaging,
   Domain.Job;
 
 type
@@ -11,7 +12,6 @@ type
 
     function FetchLatestJobs: TArray<IJob>;
   end;
-
 
 implementation
 
