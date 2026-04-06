@@ -7,11 +7,12 @@ The purpose of this application is solely to drive the initial development of ar
 
 As mentioned, the focus is not the appliction, but architectural abstractions.
 
-The evolving **Project Galahad** types are located in the Base folder.
-
 The architecture for the demo is now in place:
 
 <img width="372" height="493" alt="JobQueryDemo" src="https://github.com/user-attachments/assets/dd2456ed-f557-4320-926c-c16ce5e3698d" />
+
+
+The evolving **Project Galahad** types are located in the Base folder.
 
 Hopefully, the project will be finished shortly.
 
