@@ -26,5 +26,3 @@ The Json handling code is specifically for the UK schema, it may very based on c
 There's about 100 jobs in the existing database.
 
 Note: If you build the project, the post build event will copy the project's Settings.Xml file to the debug folder, overriding the existing one. So that's the Xml file to update. However, if you are just running the application, then edit the Settings.Xml file in the debug folder.
-
-<img width="1286" height="1088" alt="JobSearchDemo" src="https://github.com/user-attachments/assets/b67ab272-e7c0-447d-819c-5c86c2b4d7b3" />
