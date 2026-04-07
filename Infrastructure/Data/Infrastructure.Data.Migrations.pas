@@ -58,7 +58,8 @@ const
             Title             TEXT    NOT NULL DEFAULT '',
             Url               TEXT    NOT NULL DEFAULT '',
             Description       TEXT    NOT NULL DEFAULT '',
-            Applied           INTEGER NOT NULL DEFAULT 0
+            Applied           INTEGER NOT NULL DEFAULT 0,
+            Notes             TEXT    NOT NULL DEFAULT ''
         );
 
         CREATE TABLE Searches (
@@ -80,7 +81,8 @@ const
   SQL = '''
         INSERT INTO Searches (Id, Title, Location, MaxResults) VALUES
         (1, 'Delphi Developer', 'UK', 25),
-        (2, 'C# Developer', 'UK', 50);
+        (2, 'C# Developer', 'UK', 50),
+        (3, '.NET Developer', 'UK', 50);
         ''';
 begin
   inherited;

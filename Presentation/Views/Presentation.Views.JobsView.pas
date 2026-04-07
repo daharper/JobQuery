@@ -47,7 +47,9 @@ type
         var AHandled: Boolean);
 
   private
+    procedure RefreshView;
     procedure OnJobsRetrieved(const aEvent: TJobsRetrievedEvent);
+    procedure OnJobUpdated(const aEvent: TJobUpdatedEvent);
   public
     procedure Initialize; override;
   end;
@@ -59,6 +61,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  Presentation.Forms.Job;
+
 { TJobsView }
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -69,6 +74,7 @@ begin
   DataDataModule.JobsDataSource.DataSet.Open;
 
   JobsEventBus.Subscribe<TJobsRetrievedEvent>(OnJobsRetrieved);
+  JobsEventBus.Subscribe<TJobUpdatedEvent>(OnJobUpdated);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -101,13 +107,25 @@ begin
   var value := ACellViewInfo.GridRecord.Values[cxGrid1DBTableView1Id.Index];
 
   if not VarIsNull(value) then
-    ShowMessage('Selected ID: ' + VarToStr(value));
+    TJobForm.Execute(VarAsType(value, varInteger));
 
   AHandled := true;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TJobsView.OnJobsRetrieved(const aEvent: TJobsRetrievedEvent);
+begin
+  RefreshView;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TJobsView.OnJobUpdated(const aEvent: TJobUpdatedEvent);
+begin
+  RefreshView;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TJobsView.RefreshView;
 begin
   DataDataModule.JobsDataSource.DataSet.Close;
   DataDataModule.JobsDataSource.DataSet.Open;

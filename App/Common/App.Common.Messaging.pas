@@ -17,6 +17,15 @@ type
     constructor Create(const aCount: integer);
   end;
 
+  TJobUpdatedEvent = class(TJobEvent)
+  private
+    fId: integer;
+  public
+    property Id: integer read fId;
+
+    constructor Create(const aId: integer);
+  end;
+
   function JobsEventBus: TEventBus<TJobEvent>;
 
 implementation
@@ -43,9 +52,21 @@ begin
   fCount := aCount;
 end;
 
+{ TJobUpdatedEvent }
+
+{----------------------------------------------------------------------------------------------------------------------}
+constructor TJobUpdatedEvent.Create(const aId: integer);
+begin
+  inherited Create;
+
+  fId := aId;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
 initialization
   _JobsEventBus := TEventBus<TJobEvent>.Create;
 
+{----------------------------------------------------------------------------------------------------------------------}
 finalization
   FreeAndNil(_JobsEventBus);
 end.

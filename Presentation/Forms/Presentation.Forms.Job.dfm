@@ -4,8 +4,8 @@ object JobForm: TJobForm
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Job Details'
-  ClientHeight = 587
-  ClientWidth = 787
+  ClientHeight = 875
+  ClientWidth = 670
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -315,5 +315,826 @@ object JobForm: TJobForm
     00E000030000070000E000030000070001C000030000070007C0000100000700
     3F800001000007FFFC000001000007FFE0000000000000000000000000008000
     0000000000008000000000010000C000000000030000F8000000000F0000}
+  Position = poMainFormCenter
   TextHeight = 15
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 600
+    Width = 670
+    Height = 3
+    Cursor = crVSplit
+    Align = alTop
+    ExplicitTop = 465
+    ExplicitWidth = 234
+  end
+  object htJobDetails: THtPanel
+    Left = 0
+    Top = 0
+    Width = 670
+    Height = 600
+    Align = alTop
+    Caption = 'htJobDetails'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+    Touch.InteractiveGestures = [igZoom, igPan, igPressAndTap]
+    Touch.InteractiveGestureOptions = [igoPanSingleFingerHorizontal, igoPanSingleFingerVertical, igoPanInertia]
+    Touch.ParentTabletOptions = False
+    Touch.TabletOptions = [toPressAndHold, toSmoothScrolling]
+    HTML.Strings = (
+      '<!DOCTYPE html>'
+      '<html>'
+      '<head>'
+      '<style>'
+      '  body {'
+      '    background-color: #121212;'
+      '    color: #e0e0e0;'
+      
+        '    font-family: '#39'Segoe UI'#39', Tahoma, Geneva, Verdana, sans-serif' +
+        ';'
+      '    display: flex;'
+      '    justify-content: center;'
+      '    padding: 40px;'
+      '  }'
+      '  .job-card {'
+      '    background-color: #1e1e1e;'
+      '    border: 1px solid #333;'
+      '    border-radius: 8px;'
+      '    padding: 24px;'
+      '    width: 100%;'
+      '    max-width: 500px;'
+      '    box-shadow: 0 4px 12px rgba(0,0,0,0.5);'
+      '  }'
+      '  .job-title {'
+      '    color: #bb86fc;'
+      '    font-size: 1.5em;'
+      '    margin-bottom: 4px;'
+      '    font-weight: bold;'
+      '  }'
+      '  .company-info {'
+      '    color: #03dac6;'
+      '    font-weight: 500;'
+      '    margin-bottom: 16px;'
+      '  }'
+      '  .details-grid {'
+      '    display: grid;'
+      '    grid-template-columns: auto 1fr;'
+      '    gap: 8px 16px;'
+      '    margin-bottom: 20px;'
+      '    font-size: 0.95em;'
+      '  }'
+      '  .label {'
+      '    color: #999;'
+      '    text-transform: uppercase;'
+      '    font-size: 0.8em;'
+      '    letter-spacing: 0.5px;'
+      '  }'
+      '  .description {'
+      '    line-height: 1.6;'
+      '    border-top: 1px solid #333;'
+      '    padding-top: 16px;'
+      '    color: #b0b0b0;'
+      '  }'
+      '  .apply-link {'
+      '    display: inline-block;'
+      '    margin-top: 0px;'#11
+      '    margin-left: -5px;'
+      '    color: #bb86fc;'
+      '    text-decoration: none;'
+      '    border: 1px solid #bb86fc;'
+      '    padding: 8px 16px;'#11
+      ''
+      ''
+      '    border-radius: 4px;'
+      '    transition: 0.3s;'
+      '  }'
+      '  .apply-link:hover {'
+      '    background-color: #bb86fc;'
+      '    color: #121212;'
+      '  }'
+      '</style>'
+      '</head>'
+      '<body>'
+      ''
+      '<div class="job-card">'
+      '  <!-- Title & Company -->'
+      '  <div class="job-title">Senior Software Engineer</div>'
+      
+        '  <div class="company-info">TechCorp Inc. &bull; New York, NY</d' +
+        'iv>'
+      '  '
+      '  <!-- Grid for Min/Max Salary & Location -->'
+      '  <div class="details-grid">'
+      '    <div class="label">Location</div>'
+      '    <div>Remote / Hybrid</div>'
+      '    '
+      '    <div class="label">Salary</div>'
+      '    <div>$120,000 (Min) - $160,000 (Max)</div>'
+      '  </div>'
+      ''
+      '  <!-- Description -->'
+      '  <div class="description">'
+      
+        '    We are looking for a passionate engineer to join our core te' +
+        'am. You will be responsible for scaling our microservices archit' +
+        'ecture and mentoring junior developers.'
+      '  </div>'
+      #11
+      ''
+      ''
+      ''
+      ''
+      ''
+      ''
+      '<br/>'#11
+      ''
+      ''
+      ''
+      ''
+      ''
+      ''
+      ''
+      '  <!-- URL Hyperlink -->'
+      
+        '  <a href="https://example.com/job-post" class="apply-link" targ' +
+        'et="_blank">View Full Posting</a>'
+      '</div>'
+      ''
+      '</body>'
+      '</html>')
+    OnUrlClick = htJobDetailsUrlClick
+    HighlightTextColor = 0
+    ScaleMin = 10.000000000000000000
+    ScaleMax = 1000.000000000000000000
+  end
+  object pnlApply: TPanel
+    Left = 0
+    Top = 603
+    Width = 670
+    Height = 272
+    Align = alClient
+    BevelOuter = bvNone
+    ShowCaption = False
+    TabOrder = 1
+    ExplicitTop = 468
+    ExplicitWidth = 631
+    ExplicitHeight = 231
+    DesignSize = (
+      670
+      272)
+    object HtLabel1: THtLabel
+      Left = 8
+      Top = 8
+      Width = 98
+      Height = 13
+      Caption = 
+        '<head>'#13#10'<style>'#13#10'  .label {'#13#10'    color: #999;'#13#10'    text-transfor' +
+        'm: uppercase;'#13#10'    font-size: 0.8em;'#13#10'    letter-spacing: 0.5px;' +
+        #13#10'  }'#13#10'</style>'#13#10'</head>'#13#10'<body>'#13#10'<div class="label">Application' +
+        ' Notes</div>'#13#10'</body>'
+      Transparent = True
+    end
+    object btnSave: TButton
+      Left = 589
+      Top = 241
+      Width = 75
+      Height = 25
+      Anchors = [akRight, akBottom]
+      Caption = 'Save'
+      TabOrder = 0
+      OnClick = btnSaveClick
+      ExplicitLeft = 550
+      ExplicitTop = 200
+    end
+    object txtNotes: TTextEditor
+      Left = 8
+      Top = 40
+      Width = 656
+      Height = 185
+      Colors.ActiveLineBackground = 3022878
+      Colors.ActiveLineBackgroundUnfocused = 3022878
+      Colors.CaretMultiEditBackground = 16108224
+      Colors.CaretMultiEditForeground = 2497306
+      Colors.CodeFoldingActiveLineBackground = 3022878
+      Colors.CodeFoldingActiveLineBackgroundUnfocused = 3022878
+      Colors.CodeFoldingBackground = 2497306
+      Colors.CodeFoldingCollapsedLine = 3877667
+      Colors.CodeFoldingFoldingLine = 3877667
+      Colors.CodeFoldingFoldingLineHighlight = 5521974
+      Colors.CodeFoldingHintBackground = 1971742
+      Colors.CodeFoldingHintBorder = 1314576
+      Colors.CodeFoldingHintIndicatorBackground = 1971742
+      Colors.CodeFoldingHintIndicatorBorder = 1314576
+      Colors.CodeFoldingHintIndicatorMark = 3877667
+      Colors.CodeFoldingHintText = 14070185
+      Colors.CodeFoldingIndent = 3351587
+      Colors.CodeFoldingIndentHighlight = 5520182
+      Colors.CompletionProposalBackground = 1971742
+      Colors.CompletionProposalBorder = 1314576
+      Colors.CompletionProposalForeground = 10078089
+      Colors.CompletionProposalSelectedBackground = 2892320
+      Colors.CompletionProposalSelectedText = 14070185
+      Colors.EditorAssemblerCommentBackground = 2497306
+      Colors.EditorAssemblerCommentForeground = 8214865
+      Colors.EditorAssemblerReservedWordBackground = 2497306
+      Colors.EditorAssemblerReservedWordForeground = 16228986
+      Colors.EditorAttributeBackground = 2497306
+      Colors.EditorAttributeForeground = 16227755
+      Colors.EditorBackground = 2497306
+      Colors.EditorCharacterBackground = 2497306
+      Colors.EditorCharacterForeground = 6999710
+      Colors.EditorCommentBackground = 2497306
+      Colors.EditorCommentForeground = 8214865
+      Colors.EditorDirectiveBackground = 2497306
+      Colors.EditorDirectiveForeground = 16764797
+      Colors.EditorForeground = 14070185
+      Colors.EditorHexNumberBackground = 2497306
+      Colors.EditorHexNumberForeground = 6594303
+      Colors.EditorHighlightedBlockBackground = 2497306
+      Colors.EditorHighlightedBlockForeground = 14070185
+      Colors.EditorHighlightedBlockSymbolBackground = 2497306
+      Colors.EditorHighlightedBlockSymbolForeground = 16228986
+      Colors.EditorLogicalOperatorBackground = 2497306
+      Colors.EditorLogicalOperatorForeground = 16227755
+      Colors.EditorMethodForeground = 16227755
+      Colors.EditorMethodItalicForeground = 16228986
+      Colors.EditorMethodNameForeground = 16228986
+      Colors.EditorNumberBackground = 2497306
+      Colors.EditorNumberForeground = 6594303
+      Colors.EditorReservedWordBackground = 2497306
+      Colors.EditorReservedWordForeground = 16227755
+      Colors.EditorStringBackground = 2497306
+      Colors.EditorStringForeground = 6999710
+      Colors.EditorSymbolBackground = 2497306
+      Colors.EditorSymbolForeground = 16768393
+      Colors.EditorValueBackground = 2497306
+      Colors.EditorValueForeground = 16227755
+      Colors.EditorWebLinkBackground = 2497306
+      Colors.EditorWebLinkForeground = 16764797
+      Colors.LeftMarginActiveLineBackground = 3022878
+      Colors.LeftMarginActiveLineBackgroundUnfocused = 3022878
+      Colors.LeftMarginActiveLineNumber = 10058872
+      Colors.LeftMarginBackground = 2497306
+      Colors.LeftMarginBookmarkPanelBackground = 2497306
+      Colors.LeftMarginBorder = 2497306
+      Colors.LeftMarginLineNumberLine = 3877667
+      Colors.LeftMarginLineNumbers = 5520182
+      Colors.LeftMarginLineStateModified = 7358131
+      Colors.LeftMarginLineStateNormal = 4606113
+      Colors.MatchingPairMatched = 6111843
+      Colors.MatchingPairUnderline = 16227755
+      Colors.MatchingPairUnmatched = 4076933
+      Colors.MinimapBookmark = 11904577
+      Colors.MinimapVisibleRows = 1971476
+      Colors.RightMargin = 4341054
+      Colors.RightMovingEdge = 4341054
+      Colors.RulerBackground = 1971742
+      Colors.RulerBorder = 1314576
+      Colors.RulerLines = 3877667
+      Colors.RulerMovingEdge = 4341054
+      Colors.RulerNumbers = 5520182
+      Colors.RulerSelection = 4271914
+      Colors.SearchHighlighterBackground = 4271914
+      Colors.SearchHighlighterForeground = 14070185
+      Colors.SearchInSelectionBackground = 3366014
+      Colors.SearchMapActiveLine = 3022878
+      Colors.SearchMapForeground = 4271914
+      Colors.SelectionBackground = 4271914
+      Colors.SelectionBackgroundUnfocused = 4271914
+      Colors.SelectionForeground = clNone
+      Colors.SelectionForegroundUnfocused = clNone
+      Colors.SyncEditBackground = 3366014
+      Colors.SyncEditEditBorder = 6860678
+      Colors.SyncEditWordBorder = 6860678
+      Colors.WordWrapIndicatorArrow = 10078089
+      Colors.WordWrapIndicatorLines = 5520182
+      FontStyles.AssemblerReservedWord = []
+      FontStyles.LogicalOperator = []
+      FontStyles.Method = []
+      FontStyles.ReservedWord = []
+      FontStyles.Value = []
+      Fonts.CodeFoldingHint.Charset = DEFAULT_CHARSET
+      Fonts.CodeFoldingHint.Color = 14070185
+      Fonts.CodeFoldingHint.Height = -11
+      Fonts.CodeFoldingHint.Name = 'Consolas'
+      Fonts.CodeFoldingHint.Style = []
+      Fonts.CompletionProposal.Charset = DEFAULT_CHARSET
+      Fonts.CompletionProposal.Color = 10078089
+      Fonts.CompletionProposal.Height = -12
+      Fonts.CompletionProposal.Name = 'Consolas'
+      Fonts.CompletionProposal.Style = []
+      Fonts.LineNumbers.Charset = DEFAULT_CHARSET
+      Fonts.LineNumbers.Color = 5520182
+      Fonts.LineNumbers.Height = -11
+      Fonts.LineNumbers.Name = 'Consolas'
+      Fonts.LineNumbers.Style = []
+      Fonts.Minimap.Charset = DEFAULT_CHARSET
+      Fonts.Minimap.Color = clWindowText
+      Fonts.Minimap.Height = -1
+      Fonts.Minimap.Name = 'Consolas'
+      Fonts.Minimap.Style = []
+      Fonts.Ruler.Charset = DEFAULT_CHARSET
+      Fonts.Ruler.Color = 5520182
+      Fonts.Ruler.Height = -11
+      Fonts.Ruler.Name = 'Consolas'
+      Fonts.Ruler.Style = []
+      Fonts.Text.Charset = DEFAULT_CHARSET
+      Fonts.Text.Color = 14070185
+      Fonts.Text.Height = -12
+      Fonts.Text.Name = 'Consolas'
+      Fonts.Text.Style = []
+      Highlighter.JSON.Strings = (
+        '{'
+        '  "Highlighter": {'
+        '    "Sample": ['
+        '      "## Hello, World! in Markdown ##\r\n",'
+        '      "\r\n",'
+        '      "### Examples ###\r\n",'
+        '      "\r\n",'
+        '      "*italic* **bold**\r\n",'
+        '      "\r\n",'
+        '      "_italic_ __bold__\r\n",'
+        '      "\r\n",'
+        '      "`<code>` spans are delimited by backticks.\r\n",'
+        '      "\r\n",'
+        
+          '      "You can include literal backticks like `` `this` ``.\r\n"' +
+          ','
+        '      "\r\n",'
+        
+          '      "Welcome to my homepage [hyperlink syntax](https://textedi' +
+          'tor.pro)"'
+        '    ],'
+        '    "Editor": {'
+        '      "URIOpener": true'
+        '    },'
+        '    "ExcludedWordBreakCharacters": "*_~`",'
+        '    "MainRules": {'
+        '      "Attributes": {'
+        '        "Element": "Editor"'
+        '      },'
+        '      "SubRules": {'
+        '        "Range": ['
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "\"",'
+        '              "Close": "\""'
+        '            },'
+        '            "SubRules": {'
+        '              "Range": ['
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\\"",'
+        '                    "Close": ""'
+        '                  }'
+        '                },'
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\\\",'
+        '                    "Close": ""'
+        '                  }'
+        '                }'
+        '              ]'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "WebLink",'
+        '            "Attributes": {'
+        '              "Element": "WebLink"'
+        '            },'
+        '            "Delimiters": "<>\\^{|}\"()",'
+        '            "Properties": {'
+        '              "CloseOnTerm": true,'
+        '              "CloseOnEndOfLine": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "http://",'
+        '              "Close": " "'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "WebLink",'
+        '            "Attributes": {'
+        '              "Element": "WebLink"'
+        '            },'
+        '            "Delimiters": "<>\\^{|}\"()",'
+        '            "Properties": {'
+        '              "CloseOnTerm": true,'
+        '              "CloseOnEndOfLine": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "https://",'
+        '              "Close": " "'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "```",'
+        '              "Close": "```"'
+        '            },'
+        '            "SubRules": {'
+        '              "Range": ['
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\`",'
+        '                    "Close": ""'
+        '                  }'
+        '                },'
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\\\",'
+        '                    "Close": ""'
+        '                  }'
+        '                }'
+        '              ]'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "``",'
+        '              "Close": "``"'
+        '            },'
+        '            "SubRules": {'
+        '              "Range": ['
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\`",'
+        '                    "Close": ""'
+        '                  }'
+        '                },'
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\\\",'
+        '                    "Close": ""'
+        '                  }'
+        '                }'
+        '              ]'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "*",'
+        '              "Close": "*"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "`",'
+        '              "Close": "`"'
+        '            },'
+        '            "SubRules": {'
+        '              "Range": ['
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\\`",'
+        '                    "Close": ""'
+        '                  }'
+        '                },'
+        '                {'
+        '                  "Type": "String",'
+        '                  "Attributes": {'
+        '                    "Element": "String"'
+        '                  },'
+        '                  "Properties": {'
+        '                    "CloseOnTerm": true'
+        '                  },'
+        '                  "TokenRange": {'
+        '                    "Open": "\\\\",'
+        '                    "Close": ""'
+        '                  }'
+        '                }'
+        '              ]'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "Symbol",'
+        '            "Attributes": {'
+        '              "Element": "Symbol"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "~~~",'
+        '              "Close": "~~~"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "Method",'
+        '            "Attributes": {'
+        '              "Element": "Method"'
+        '            },'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "#"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "Number",'
+        '            "Attributes": {'
+        '              "Element": "Number"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "![[",'
+        '              "Close": "]]"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "Number",'
+        '            "Attributes": {'
+        '              "Element": "Number"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "[[",'
+        '              "Close": "]]"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "Number",'
+        '            "Attributes": {'
+        '              "Element": "Number"'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "[",'
+        '              "Close": "]"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true,'
+        '              "CloseOnTerm": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "***"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "**",'
+        '              "Close": "**"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "~~",'
+        '              "Close": "~~"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "Symbol",'
+        '            "Attributes": {'
+        '              "Element": "Symbol"'
+        '            },'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "(#",'
+        '              "Close": ")"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true,'
+        '              "CloseOnTerm": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "___"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "Delimiters": "*/+-=\\|&()[]{}`~!@,$%^?:;'#39'\".><#_",'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true,'
+        '              "UseDelimitersForText": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "__",'
+        '              "OpenBreakType": "Any",'
+        '              "Close": "__"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "String",'
+        '            "Attributes": {'
+        '              "Element": "String"'
+        '            },'
+        '            "Delimiters": "*/+-=\\|&()[]{}`~!@,$%^?:;'#39'\".><#_",'
+        '            "Properties": {'
+        '              "CloseOnEndOfLine": true,'
+        '              "UseDelimitersForText": true'
+        '            },'
+        '            "TokenRange": {'
+        '              "Open": "_",'
+        '              "OpenBreakType": "Any",'
+        '              "Close": "_"'
+        '            }'
+        '          }'
+        '        ],'
+        '        "KeyList": ['
+        '          {'
+        '            "Type": "Number",'
+        '            "Words": ['
+        '              "* "'
+        '            ],'
+        '            "Attributes": {'
+        '              "Element": "Number"'
+        '            }'
+        '          },'
+        '          {'
+        '            "Type": "Symbol",'
+        '            "Words": ['
+        '              "!",'
+        '              "-",'
+        '              "$",'
+        '              "(",'
+        '              ")",'
+        '              ",",'
+        '              ".",'
+        '              "/",'
+        '              ":",'
+        '              ";",'
+        '              "\\",'
+        '              "{",'
+        '              "|",'
+        '              "}",'
+        '              "~",'
+        '              "+",'
+        '              "<",'
+        '              "=",'
+        '              ">"'
+        '            ],'
+        '            "Attributes": {'
+        '              "Element": "Symbol"'
+        '            }'
+        '          }'
+        '        ],'
+        '        "Set": ['
+        '          {'
+        '            "Type": "Numbers",'
+        '            "Symbols": ".0123456789",'
+        '            "Attributes": {'
+        '              "Element": "Number"'
+        '            }'
+        '          }'
+        '        ]'
+        '      }'
+        '    }'
+        '  },'
+        '  "MatchingPair": {'
+        '    "Pairs": ['
+        '      {'
+        '        "OpenToken": "(",'
+        '        "CloseToken": ")"'
+        '      },'
+        '      {'
+        '        "OpenToken": "[",'
+        '        "CloseToken": "]"'
+        '      },'
+        '      {'
+        '        "OpenToken": "{",'
+        '        "CloseToken": "}"'
+        '      }'
+        '    ]'
+        '  },'
+        '  "CompletionProposal": {'
+        '    "SkipRegion": ['
+        '      {'
+        '        "OpenToken": "``",'
+        '        "CloseToken": "``",'
+        '        "RegionType": "SingleLineString"'
+        '      },'
+        '      {'
+        '        "OpenToken": "`",'
+        '        "CloseToken": "`",'
+        '        "RegionType": "SingleLineString"'
+        '      }'
+        '    ]'
+        '  }'
+        '}')
+      LeftMargin.Width = 51
+      Ruler.Visible = True
+      TabOrder = 1
+    end
+    object cbxApplied: TCheckBox
+      Left = 593
+      Top = 6
+      Width = 71
+      Height = 17
+      Caption = 'Applied  '
+      Color = 10066329
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 10066329
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 2
+      StyleElements = [seClient, seBorder]
+    end
+  end
 end

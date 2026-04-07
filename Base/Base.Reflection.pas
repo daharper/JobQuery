@@ -251,6 +251,8 @@ type
       out aOutValue: TValue
     ): Boolean; overload; static;
 
+    class function TryParseSqliteDateTimeUtc(const S: string; out D: TDateTime): Boolean; static;
+
     /// <summary>
     ///  Convenience overload accepting a TRttiType as the destination.
     /// </summary>
@@ -810,6 +812,20 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
+class function TReflection.TryParseSqliteDateTimeUtc(const S: string; out D: TDateTime): Boolean;
+var
+  FS: TFormatSettings;
+begin
+  FS := TFormatSettings.Invariant;
+  FS.DateSeparator := '-';
+  FS.TimeSeparator := ':';
+  FS.ShortDateFormat := 'yyyy-mm-dd';
+  FS.LongTimeFormat := 'hh:nn:ss.zzz';
+
+  Result := TryStrToDateTime(S, D, FS);
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
 class function TReflection.TryVariantToTValue(const aVar: Variant; aDestType: PTypeInfo; out aOutValue: TValue): Boolean;
 var
   kind: TTypeKind;
@@ -973,6 +989,16 @@ begin
           if aDestType = TypeInfo(TDateTime) then
           begin
             if VarIsNull(aVar) or VarIsEmpty(aVar) then Exit(False);
+
+            if VarIsStr(aVar) then
+            begin
+              if not TryParseSqliteDateTimeUtc(VarToStr(aVar), dt) then
+                Exit(False);
+
+              aOutValue := TValue.From<TDateTime>(dt);
+              Exit(True);
+            end;
+
             dt := VarToDateTime(aVar);
             aOutValue := TValue.From<TDateTime>(dt);
             Exit(True);

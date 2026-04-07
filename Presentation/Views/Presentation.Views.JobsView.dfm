@@ -1,23 +1,22 @@
 inherited JobsView: TJobsView
-  Width = 983
-  Height = 777
-  ExplicitWidth = 983
-  ExplicitHeight = 777
+  Width = 1070
+  Height = 842
+  ExplicitWidth = 1070
+  ExplicitHeight = 842
   object cxGrid1: TcxGrid
     Left = 0
     Top = 0
-    Width = 983
-    Height = 777
+    Width = 1070
+    Height = 842
     Align = alClient
     TabOrder = 0
     LookAndFeel.NativeStyle = False
     LookAndFeel.SkinName = 'Office2019Black'
-    ExplicitLeft = 216
-    ExplicitTop = 296
-    ExplicitWidth = 250
-    ExplicitHeight = 200
+    ExplicitWidth = 983
+    ExplicitHeight = 777
     object cxGrid1DBTableView1: TcxGridDBTableView
       FindPanel.DisplayMode = fpdmAlways
+      FindPanel.SearchInGroupRows = True
       OnCellClick = cxGrid1DBTableView1CellClick
       DataController.DataSource = DataDataModule.JobsDataSource
       DataController.KeyFieldNames = 'Id'
@@ -54,21 +53,23 @@ inherited JobsView: TJobsView
         Visible = False
       end
       object cxGrid1DBTableView1MinSalary: TcxGridDBColumn
-        Caption = 'Min $'
+        Caption = 'Min Salary'
         DataBinding.FieldName = 'MinSalary'
-        Width = 64
+        Width = 80
       end
       object cxGrid1DBTableView1MaxSalary: TcxGridDBColumn
-        Caption = 'Max $'
+        Caption = 'Max Salary'
         DataBinding.FieldName = 'MaxSalary'
+        Width = 80
       end
       object cxGrid1DBTableView1SalaryPredicted: TcxGridDBColumn
         DataBinding.FieldName = 'SalaryPredicted'
         Visible = False
+        Width = 80
       end
       object cxGrid1DBTableView1Company: TcxGridDBColumn
         DataBinding.FieldName = 'Company'
-        Width = 204
+        Width = 254
       end
       object cxGrid1DBTableView1ContractType: TcxGridDBColumn
         DataBinding.FieldName = 'ContractType'
@@ -84,7 +85,7 @@ inherited JobsView: TJobsView
       end
       object cxGrid1DBTableView1Location: TcxGridDBColumn
         DataBinding.FieldName = 'Location'
-        Width = 250
+        Width = 304
       end
       object cxGrid1DBTableView1Longitude: TcxGridDBColumn
         DataBinding.FieldName = 'Longitude'
@@ -96,7 +97,7 @@ inherited JobsView: TJobsView
       end
       object cxGrid1DBTableView1Title: TcxGridDBColumn
         DataBinding.FieldName = 'Title'
-        Width = 250
+        Width = 354
       end
       object cxGrid1DBTableView1Url: TcxGridDBColumn
         DataBinding.FieldName = 'Url'

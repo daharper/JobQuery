@@ -29,6 +29,7 @@ type
     function GetUrl: string;
     function GetDescription: string;
     function GetApplied: boolean;
+    function GetNotes: string;
 
     procedure SetArea(const aValue: string);
     procedure SetCategory(const aValue: string);
@@ -48,6 +49,7 @@ type
     procedure SetUrl(const aValue: string);
     procedure SetDescription(const aValue: string);
     procedure SetApplied(const aValue: boolean);
+    procedure SetNotes(const aValue: string);
 
     property Source:string read GetSource write SetSource;
     property SourceRef:string read GetSourceRef write SetSourceRef;
@@ -67,6 +69,7 @@ type
     property Url:string read GetUrl write SetUrl;
     property Description:string read GetDescription write SetDescription;
     property Applied: boolean read GetApplied write SetApplied;
+    property Notes: string read GetNotes write SetNotes;
   end;
 
   [TTable('Jobs')]
@@ -90,7 +93,7 @@ type
     fUrl:             string;    // redirect_url
     fDescription:     string;
     fApplied:         boolean;
-
+    fNotes:           string;
   public
     function GetArea: string;
     function GetCategory: string;
@@ -110,6 +113,7 @@ type
     function GetUrl: string;
     function GetDescription: string;
     function GetApplied: boolean;
+    function GetNotes: string;
 
     procedure SetArea(const aValue: string);
     procedure SetCategory(const aValue: string);
@@ -129,6 +133,7 @@ type
     procedure SetUrl(const aValue: string);
     procedure SetDescription(const aValue: string);
     procedure SetApplied(const aValue: boolean);
+    procedure SetNotes(const aValue: string);
 
     property Source:string read GetSource write SetSource;
     property SourceRef:string read GetSourceRef write SetSourceRef;
@@ -148,6 +153,7 @@ type
     property Url:string read GetUrl write SetUrl;
     property Description:string read GetDescription write SetDescription;
     property Applied: boolean read GetApplied write SetApplied;
+    property Notes: string read GetNotes write SetNotes;
   end;
 
   IJobRepository = interface(IDbSet<IJob, TJob>)
@@ -236,6 +242,12 @@ end;
 function TJob.GetMinSalary: integer;
 begin
   Result := fMinSalary;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+function TJob.GetNotes: string;
+begin
+  Result := fNotes;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
@@ -344,6 +356,12 @@ end;
 procedure TJob.SetMinSalary(const aValue: integer);
 begin
   fMinSalary := aValue;
+end;
+
+{----------------------------------------------------------------------------------------------------------------------}
+procedure TJob.SetNotes(const aValue: string);
+begin
+  fNotes := aValue;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
