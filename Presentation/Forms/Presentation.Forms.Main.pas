@@ -13,7 +13,6 @@ type
     MainSplitView: TSplitView;
     ViewButtons: TCategoryButtons;
     procedure CheckJobsOnClick(Sender: TObject);
-    procedure btnToggleClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ToggleMenuOnClick(Sender: TObject);
     procedure ShowJobsOnClick(Sender: TObject);
@@ -64,12 +63,6 @@ begin
   finally
     Busy := false;
   end;
-end;
-
-{----------------------------------------------------------------------------------------------------------------------}
-procedure TMainForm.btnToggleClick(Sender: TObject);
-begin
-  MainSplitView.Opened := not MainSplitView.Opened;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
