@@ -11,7 +11,7 @@ type
   private
   public
     /// <summary>
-    ///  Attempts to fetch the latests jobs, returns true if there are new jobs.
+    ///  Attempts to fetch the latests jobs, returns the count of new jobs.
     /// </summary>
     class function FetchLatestJobs: integer;
   end;

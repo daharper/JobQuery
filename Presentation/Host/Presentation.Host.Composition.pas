@@ -17,7 +17,7 @@ type
   end;
 
   /// <summary>
-  ///  Registers core services with the application builder.
+  ///  Registers core services with the service container.
   /// </summary>
   TServiceModule = class(TInterfacedObject, IContainerModule)
   public
@@ -25,7 +25,7 @@ type
   end;
 
   /// <summary>
-  ///  Registers data services with the application builder.
+  ///  Registers data services with the service container.
   /// </summary>
   TDataServiceModule = class(TInterfacedObject, IContainerModule)
   public

@@ -8,6 +8,7 @@ uses
 type
   TJobEvent = class(TBaseEvent);
 
+  /// <summary>notification of new jobs received.</summary>
   TJobsRetrievedEvent = class(TJobEvent)
   private
     fCount: integer;
@@ -17,6 +18,7 @@ type
     constructor Create(const aCount: integer);
   end;
 
+  /// <summary>notification of an updated job.</summary>
   TJobUpdatedEvent = class(TJobEvent)
   private
     fId: integer;
@@ -26,6 +28,7 @@ type
     constructor Create(const aId: integer);
   end;
 
+  /// <summary>gateway to the job event bus</summary>
   function JobsEventBus: TEventBus<TJobEvent>;
 
 implementation

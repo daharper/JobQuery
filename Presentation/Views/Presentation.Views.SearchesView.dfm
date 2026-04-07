@@ -8,10 +8,6 @@ inherited SearchesView: TSearchesView
     TabOrder = 0
     LookAndFeel.NativeStyle = False
     LookAndFeel.SkinName = 'Office2019Black'
-    ExplicitLeft = 416
-    ExplicitTop = 232
-    ExplicitWidth = 250
-    ExplicitHeight = 200
     object cxGrid1DBTableView1: TcxGridDBTableView
       Navigator.Visible = True
       DataController.DataSource = DataDataModule.SearchDataSource

@@ -491,13 +491,14 @@ object JobForm: TJobForm
     object HtLabel1: THtLabel
       Left = 8
       Top = 8
-      Width = 98
+      Width = 121
       Height = 13
+      AutoSize = False
       Caption = 
         '<head>'#13#10'<style>'#13#10'  .label {'#13#10'    color: #999;'#13#10'    text-transfor' +
         'm: uppercase;'#13#10'    font-size: 0.8em;'#13#10'    letter-spacing: 0.5px;' +
         #13#10'  }'#13#10'</style>'#13#10'</head>'#13#10'<body>'#13#10'<div class="label">Application' +
-        ' Notes</div>'#13#10'</body>'
+        ' Notes   </div>'#13#10'</body>'
       Transparent = True
     end
     object btnSave: TButton

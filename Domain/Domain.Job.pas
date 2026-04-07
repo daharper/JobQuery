@@ -75,22 +75,22 @@ type
   [TTable('Jobs')]
   TJob = class(TEntity, IJob)
   private
-    fSource:          string;    // Adzuna
-    fCreatedAt:       TDateTime; // created
-    fSourceRef:       string;    // id (5673228454)
-    fCategory:        string;    // category -> label (IT Jobs)
-    fMinSalary:       integer;   // salary_min
-    fMaxSalary:       integer;   // salary_max
-    fSalaryPredicted: boolean;   // salary_is_predicted (0 or 1)
-    fCompany:         string;    // company -> display_name
-    fContractType:    string;    // contract_type (permenant)
-    fContractTime:    string;    // contract_time (full_time)
-    fArea:            string;    // location -> display_name (Wickford, Essex)
-    fLocation:        string;    // location -> area         ([UK, Eastern England, Essex, Wickford])
-    fLongitude:       double;    // longitude
-    fLatitude:        double;    // latitude
-    fTitle:           string;    // title
-    fUrl:             string;    // redirect_url
+    fSource:          string;
+    fCreatedAt:       TDateTime;
+    fSourceRef:       string;
+    fCategory:        string;
+    fMinSalary:       integer;
+    fMaxSalary:       integer;
+    fSalaryPredicted: boolean;
+    fCompany:         string;
+    fContractType:    string;
+    fContractTime:    string;
+    fArea:            string;
+    fLocation:        string;
+    fLongitude:       double;
+    fLatitude:        double;
+    fTitle:           string;
+    fUrl:             string;
     fDescription:     string;
     fApplied:         boolean;
     fNotes:           string;

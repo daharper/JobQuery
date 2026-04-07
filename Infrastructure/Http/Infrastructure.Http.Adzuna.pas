@@ -89,7 +89,6 @@ begin
       job.Title           := Json.AsStr(obj, 'title');
       job.Category        := Json.AsNestedStr(obj, 'category', 'label');
       job.Company         := Json.AsNestedStr(obj, 'company', 'display_name');
-//      job.Area            := Json.NestedArrayAsStr(obj, 'location', 'area');
       job.Location        := Json.AsNestedStr(obj, 'location', 'display_name');
       job.CreatedAt       := TConvert.ToDateTimeISO8601UtcOr(Json.AsStr(obj, 'created'), TConvert.UtcNow);
       job.MinSalary       := Trunc(TConvert.ToDoubleOr(Json.AsStr(obj, 'salary_min'), 0));

@@ -24,6 +24,7 @@ type
     function UpdatedCount: integer;
 
     procedure Execute;
+
     constructor Create(const aFeedClient: IJobFeedClient; const aJobRepository: IJobRepository);
   end;
 
@@ -50,13 +51,12 @@ begin
       Inc(fUpdatedCount);
     end;
 
-  if fUpdatedCount > 0 then
-  begin
-    var e := TJobsRetrievedEvent.Create(fUpdatedCount);
-    var group := TJobEvent.Create;
+  if fUpdatedCount = 0 then exit;
 
-    JobsEventBus.Publish<TJobsRetrievedEvent, TJobEvent>(e, group);
-  end;
+  var e := TJobsRetrievedEvent.Create(fUpdatedCount);
+  var group := TJobEvent.Create;
+
+  JobsEventBus.Publish<TJobsRetrievedEvent, TJobEvent>(e, group);
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}

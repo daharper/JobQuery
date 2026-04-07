@@ -39,6 +39,7 @@ begin
   inherited;
 
   cxGrid1DBTableView1Title.Width := Width - 10 - cxGrid1DBTableView1Location.Width - cxGrid1DBTableView1MaxResults.Width;
+
   DataDataModule.SearchDataSource.DataSet.Open;
 end;
 

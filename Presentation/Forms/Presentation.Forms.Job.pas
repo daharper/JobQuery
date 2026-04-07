@@ -196,15 +196,16 @@ begin
   var dlg := scope.Owns(TJobForm.Create(nil));
 
   dlg.Initialize(aId);
-
   dlg.ShowModal;
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
 procedure TJobForm.htJobDetailsUrlClick(Sender: TElement);
 begin
+  // we could get this from the fJob, but it is a nice opportunity to work with HtPanel.
   var url := Sender.Attributes.Attr['href'];
 
+  // ask the operate system to show the url
   ShellExecute(0, nil, PChar(url), nil, nil, SW_SHOWNORMAL);
 end;
 

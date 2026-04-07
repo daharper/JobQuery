@@ -71,7 +71,7 @@ procedure TJobsView.Initialize;
 begin
   inherited;
 
-  DataDataModule.JobsDataSource.DataSet.Open;
+  RefreshView;
 
   JobsEventBus.Subscribe<TJobsRetrievedEvent>(OnJobsRetrieved);
   JobsEventBus.Subscribe<TJobUpdatedEvent>(OnJobUpdated);
