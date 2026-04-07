@@ -12,7 +12,9 @@ The evolving **Project Galahad** types are located in the Base folder.
 
 DevExpress is required to build the project, and Delphi Html Components (HtPanel), but even without DevExpress, you can run the executable in the Win32\Debug folder, and view the source code.
 
-To run the application, you'll need to register an account with Adzuna (it's free).
+To download jobs search data you'll need to register an account with Adzuna (it's free).
+
+The Json handling code is specifically for the UK schema, it may very based on country.
 
 After registration, configure the Settings.Xml section accordingly, here's an example for UK:
 
