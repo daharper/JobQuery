@@ -65,6 +65,10 @@ begin
         search.MaxResults
       ]);
 
+    // client.Accept := 'application/json';
+    // client.ConnectionTimeout := 10000;
+    // client.ResponseTimeout := 30000;
+
     var response := client.Get(url);
     var content  := response.ContentAsString(TEncoding.UTF8);
 

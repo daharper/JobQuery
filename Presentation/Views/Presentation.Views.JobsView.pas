@@ -39,7 +39,7 @@ type
         ARecord: TcxCustomGridRecord;
         var AText: string);
 
-    procedure cxGrid1DBTableView1CellClick(
+    procedure cxGrid1DBTableView1CellDblClick(
         Sender: TcxCustomGridTableView;
         ACellViewInfo: TcxGridTableDataCellViewInfo;
         AButton: TMouseButton;
@@ -95,12 +95,9 @@ begin
 end;
 
 {----------------------------------------------------------------------------------------------------------------------}
-procedure TJobsView.cxGrid1DBTableView1CellClick(
-    Sender: TcxCustomGridTableView;
-    ACellViewInfo: TcxGridTableDataCellViewInfo;
-    AButton: TMouseButton;
-    AShift: TShiftState;
-    var AHandled: Boolean);
+procedure TJobsView.cxGrid1DBTableView1CellDblClick(Sender:
+    TcxCustomGridTableView; ACellViewInfo: TcxGridTableDataCellViewInfo;
+    AButton: TMouseButton; AShift: TShiftState; var AHandled: Boolean);
 begin
   inherited;
 

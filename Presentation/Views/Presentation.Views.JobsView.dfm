@@ -12,19 +12,17 @@ inherited JobsView: TJobsView
     TabOrder = 0
     LookAndFeel.NativeStyle = False
     LookAndFeel.SkinName = 'Office2019Black'
-    ExplicitWidth = 983
-    ExplicitHeight = 777
     object cxGrid1DBTableView1: TcxGridDBTableView
       FindPanel.DisplayMode = fpdmAlways
       FindPanel.SearchInGroupRows = True
-      OnCellClick = cxGrid1DBTableView1CellClick
+      OnCellDblClick = cxGrid1DBTableView1CellDblClick
       DataController.DataSource = DataDataModule.JobsDataSource
       DataController.KeyFieldNames = 'Id'
       OptionsData.CancelOnExit = False
-      OptionsData.Deleting = False
       OptionsData.DeletingConfirmation = False
       OptionsData.Editing = False
       OptionsData.Inserting = False
+      OptionsSelection.MultiSelect = True
       object cxGrid1DBTableView1Id: TcxGridDBColumn
         DataBinding.FieldName = 'Id'
         Visible = False
