@@ -1,7 +1,7 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  Caption = 'Job Search (Project Galahad v0.1)'
+  Caption = 'JobQuery (Project Galahad v0.1)'
   ClientHeight = 1050
   ClientWidth = 1270
   Color = clBtnFace
@@ -327,8 +327,6 @@ object MainForm: TMainForm
     BevelOuter = bvNone
     ShowCaption = False
     TabOrder = 0
-    ExplicitWidth = 1013
-    ExplicitHeight = 867
   end
   object MainSplitView: TSplitView
     Left = 0
@@ -340,7 +338,6 @@ object MainForm: TMainForm
     OpenedWidth = 160
     Placement = svpLeft
     TabOrder = 1
-    ExplicitHeight = 878
     object ViewButtons: TCategoryButtons
       Left = 0
       Top = 0
@@ -390,7 +387,6 @@ object MainForm: TMainForm
       SelectedButtonColor = 15132390
       ShowHint = True
       TabOrder = 0
-      ExplicitHeight = 878
     end
   end
 end

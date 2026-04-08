@@ -33,7 +33,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
 
-  Application.Title := 'Job Query';
+  Application.Title := 'JobQuery';
 
   TStyleManager.TrySetStyle('Windows Modern Dark');
 
